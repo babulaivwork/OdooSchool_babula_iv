@@ -1,5 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_odoo_school_hr_hospital_doctor_user,access.odoo.school.hr.hospital.doctor.user,model_odoo_school_hr_hospital_doctor,base.group_user,1,1,1,1
-access_odoo_school_hr_hospital_patient_user,access.odoo.school.hr.hospital.patient.user,model_odoo_school_hr_hospital_patient,base.group_user,1,1,1,1
-access_odoo_school_hr_hospital_disease_user,access.odoo.school.hr.hospital.disease.user,model_odoo_school_hr_hospital_disease,base.group_user,1,1,1,1
-access_odoo_school_hr_hospital_visit_user,access.odoo.school.hr.hospital.visit.user,model_odoo_school_hr_hospital_visit,base.group_user,1,1,1,1
+access_odoo_school_hr_hospital_doctor_user,access.os.hr.hospital.doctor.user,model_os_hr_hospital_doctor,base.group_user,1,1,1,1
+access_odoo_school_hr_hospital_patient_user,access.os.hr.hospital.patient.user,model_os_hr_hospital_patient,base.group_user,1,1,1,1
+access_odoo_school_hr_hospital_disease_user,access.os.hr.hospital.disease.user,model_os_hr_hospital_disease,base.group_user,1,1,1,1
+access_odoo_school_hr_hospital_visit_user,access.os.hr.hospital.visit.user,model_os_hr_hospital_visit,base.group_user,1,1,1,1

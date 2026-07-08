@@ -1,5 +1,5 @@
 <odoo>
-    <record id="patient_demo_1" model="odoo.school.hr.hospital.patient">
+    <record id="patient_demo_1" model="os.hr.hospital.patient">
         <field name="name">Марія Бондар</field>
         <field name="birth_date">1991-04-12</field>
         <field name="phone">+380501234567</field>
@@ -8,7 +8,7 @@
         <field name="description">Пацієнтка перебуває під регулярним наглядом терапевта.</field>
     </record>
 
-    <record id="patient_demo_2" model="odoo.school.hr.hospital.patient">
+    <record id="patient_demo_2" model="os.hr.hospital.patient">
         <field name="name">Петро Іваненко</field>
         <field name="birth_date">1983-09-25</field>
         <field name="phone">+380672345678</field>
@@ -17,7 +17,7 @@
         <field name="description">Пацієнт спостерігається у пульмонолога.</field>
     </record>
 
-    <record id="patient_demo_3" model="odoo.school.hr.hospital.patient">
+    <record id="patient_demo_3" model="os.hr.hospital.patient">
         <field name="name">Наталія Сидоренко</field>
         <field name="birth_date">1997-12-03</field>
         <field name="phone">+380933456789</field>

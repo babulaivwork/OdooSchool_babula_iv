@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 
 class OSHrHospitalPatient(models.Model):
-    _name = 'odoo.school.hr.hospital.patient'
+    _name = 'os.hr.hospital.patient'
     _description = 'Patient'
 
     name = fields.Char()
@@ -19,7 +19,7 @@ class OSHrHospitalPatient(models.Model):
     notes = fields.Text()
 
     visit_ids = fields.One2many(
-        comodel_name='odoo.school.hr.hospital.visit',
+        comodel_name='os.hr.hospital.visit',
         inverse_name='patient_id',
         string='Visits',
     )

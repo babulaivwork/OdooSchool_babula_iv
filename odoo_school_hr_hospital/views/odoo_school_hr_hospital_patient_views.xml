@@ -1,7 +1,7 @@
 <odoo>
     <record id="odoo_school_hr_hospital_patient_list" model="ir.ui.view">
-        <field name="name">odoo.school.hr.hospital.patient.list</field>
-        <field name="model">odoo.school.hr.hospital.patient</field>
+        <field name="name">os.hr.hospital.patient.list</field>
+        <field name="model">os.hr.hospital.patient</field>
         <field name="arch" type="xml">
             <list>
                 <field name="name"/>
@@ -13,8 +13,8 @@
     </record>
 
     <record id="odoo_school_hr_hospital_patient_form" model="ir.ui.view">
-        <field name="name">odoo.school.hr.hospital.patient.form</field>
-        <field name="model">odoo.school.hr.hospital.patient</field>
+        <field name="name">os.hr.hospital.patient.form</field>
+        <field name="model">os.hr.hospital.patient</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
@@ -53,7 +53,7 @@
     <record id="action_odoo_school_hr_hospital_patient_window" model="ir.actions.act_window">
         <field name="name">Patients</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">odoo.school.hr.hospital.patient</field>
+        <field name="res_model">os.hr.hospital.patient</field>
         <field name="view_mode">list,form</field>
     </record>
 

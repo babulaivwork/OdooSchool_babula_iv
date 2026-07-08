@@ -1,5 +1,5 @@
 <odoo>
-    <record id="doctor_demo_1" model="odoo.school.hr.hospital.doctor">
+    <record id="doctor_demo_1" model="os.hr.hospital.doctor">
         <field name="name">Олена Коваль</field>
         <field name="specialty">Терапевт</field>
         <field name="phone">+380501112233</field>
@@ -7,7 +7,7 @@
         <field name="notes">Сімейний лікар.</field>
     </record>
 
-    <record id="doctor_demo_2" model="odoo.school.hr.hospital.doctor">
+    <record id="doctor_demo_2" model="os.hr.hospital.doctor">
         <field name="name">Андрій Мельник</field>
         <field name="specialty">Пульмонолог</field>
         <field name="phone">+380672223344</field>
@@ -15,7 +15,7 @@
         <field name="notes">Спеціалізується на захворюваннях органів дихання.</field>
     </record>
 
-    <record id="doctor_demo_3" model="odoo.school.hr.hospital.doctor">
+    <record id="doctor_demo_3" model="os.hr.hospital.doctor">
         <field name="name">Ірина Шевченко</field>
         <field name="specialty">Алерголог</field>
         <field name="phone">+380933334455</field>
