@@ -28,9 +28,6 @@ class OSLBook(models.Model):
     )
     html_note = fields.Html()
     release_date = fields.Date(default=fields.Date.today(), )
-    # release_datetime = fields.Datetime(
-    #     default=lambda self: fields.Datetime.now(),
-    # )
     author_names = fields.Char(
         default=lambda self: self._default_all_authors_get(), )
 
@@ -46,7 +43,6 @@ class OSLBook(models.Model):
         related='company_id.currency_id',
         readonly=True,
     )
-    # price = fields.Float(string='Price', digits=(16, 1), )
     monetary_price = fields.Monetary(
         string='Price Monetary',
         currency_field='company_currency_id',
@@ -63,6 +59,8 @@ class OSLBook(models.Model):
         string="Main Author",
         index=True,
         help="Main Author who created this book",
+        domain=[('is_ods_author', '=', True)],
+        ondelete='set null',
     )
     partner_country_name = fields.Char(
         related='res_partner_id.country_id.name'
@@ -71,14 +69,27 @@ class OSLBook(models.Model):
         comodel_name='res.partner',
         string="Additional Authors",
         help="Additional Authors who took part in creating this book",
+        relation="osl_book_res_partner_rel",
+        column1="ods_book_id",
+        column2="res_partner_id",
     )
-    # book_cover_image = fields.Binary(
-    #     attachment=False,
-    # )
+    res_partner_readers_ids = fields.Many2many(
+        comodel_name='res.partner',
+        string="Book readers",
+        help="At this moment they are reading the book",
+        readonly=True,
+        relation="osl_book_res_partner_reader_rel",
+        column1="ods_book_id",
+        column2="res_partner_id",
+    )
     book_cover_image = fields.Image(
         max_width=512,
         max_height=512,
     )
+
+    _sql_constraints = [
+        ('name_uniq', 'unique (name)', 'The book name must be unique!')
+    ]
 
     def _default_all_authors_get(self):
         author_names = ''
@@ -86,3 +97,4 @@ class OSLBook(models.Model):
         for partner_id in res_partner_ids:
             author_names += partner_id.name
         return author_names
+    
