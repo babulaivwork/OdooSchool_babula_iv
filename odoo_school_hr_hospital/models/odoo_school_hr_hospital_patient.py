@@ -13,6 +13,19 @@ class OSHrHospitalPatient(models.Model):
     email = fields.Char()
     address = fields.Char()
     notes = fields.Text()
+    personal_doctor_id = fields.Many2one(
+        comodel_name='os.hr.hospital.doctor',
+        string='Personal Doctor',
+    )
+    doctor_history_ids = fields.One2many(
+        comodel_name='os.hr.hospital.doctor.history',
+        inverse_name='patient_id',
+        string='Personal Doctor History',
+    )
+    insurance_policy_number = fields.Char(
+        string='Insurance Policy Number',
+        size=20,
+    )
 
     visit_ids = fields.One2many(
         comodel_name='os.hr.hospital.visit',

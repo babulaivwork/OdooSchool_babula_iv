@@ -25,12 +25,14 @@
                             <field name="birth_date"/>
                             <field name="age"/>
                             <field name="blood_group"/>
+                            <field name="personal_doctor_id"/>
                             <field name="active"/>
                         </group>
                         <group>
                             <field name="phone"/>
                             <field name="email"/>
                             <field name="address"/>
+                            <field name="insurance_policy_number"/>
                         </group>
                     </group>
                     <notebook>
@@ -40,7 +42,18 @@
                                     <field name="name"/>
                                     <field name="doctor_id"/>
                                     <field name="disease_id"/>
-                                    <field name="visit_date"/>
+                                    <field name="state"/>
+                                    <field name="scheduled_datetime"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Personal Doctor History">
+                            <field name="doctor_history_ids">
+                                <list>
+                                    <field name="doctor_id"/>
+                                    <field name="assignment_date"/>
+                                    <field name="change_date"/>
+                                    <field name="active"/>
                                 </list>
                             </field>
                         </page>

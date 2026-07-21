@@ -8,7 +8,9 @@
                 <field name="patient_id"/>
                 <field name="doctor_id"/>
                 <field name="disease_id"/>
-                <field name="visit_date"/>
+                <field name="state"/>
+                <field name="scheduled_datetime"/>
+                <field name="actual_datetime"/>
             </list>
         </field>
     </record>
@@ -23,20 +25,22 @@
                         <group>
                             <field name="name"/>
                             <field name="patient_id"/>
-                            <field name="doctor_id"/>
+                            <field name="doctor_id" readonly="state == 'completed'"/>
                             <field name="disease_id"/>
                         </group>
                         <group>
-                            <field name="visit_date"/>
-                            <field name="active"/>
+                            <field name="state" readonly="state == 'completed'"/>
+                            <field name="scheduled_datetime" readonly="state == 'completed'"/>
+                            <field name="actual_datetime" readonly="state == 'completed'"/>
+                            <field name="active" readonly="state == 'completed'"/>
                         </group>
                     </group>
                     <notebook>
                         <page string="Description">
                             <field name="description"/>
                         </page>
-                        <page string="Result">
-                            <field name="result"/>
+                        <page string="Summary">
+                            <field name="summary"/>
                         </page>
                     </notebook>
                 </sheet>

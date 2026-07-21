@@ -1,4 +1,4 @@
-from odoo import _, api, fields, models
+from odoo import api, fields, models
 from odoo.exceptions import ValidationError
 
 
@@ -40,7 +40,7 @@ class OSHrHospitalDoctorHistory(models.Model):
             if patient_name and doctor_name:
                 display_name = f'{patient_name} - {doctor_name} ({category_name})'
             else:
-                display_name = patient_name or doctor_name or _('New Doctor History')
+                display_name = patient_name or doctor_name or 'New Doctor History'
                 if category_name:
                     display_name += f' ({category_name})'
             if assignment_date:
@@ -53,8 +53,8 @@ class OSHrHospitalDoctorHistory(models.Model):
         if self.assignment_date and self.change_date and self.change_date < self.assignment_date:
             return {
                 'warning': {
-                    'title': _('Invalid Dates'),
-                    'message': _('The doctor change date cannot be earlier than the assignment date.'),
+                    'title': 'Invalid Dates',
+                    'message': 'The doctor change date cannot be earlier than the assignment date.',
                 },
             }
         return None
@@ -63,4 +63,4 @@ class OSHrHospitalDoctorHistory(models.Model):
     def _check_dates(self):
         for history in self:
             if history.assignment_date and history.change_date and history.change_date < history.assignment_date:
-                raise ValidationError(_('The doctor change date cannot be earlier than the assignment date.'))
+                raise ValidationError('The doctor change date cannot be earlier than the assignment date.')

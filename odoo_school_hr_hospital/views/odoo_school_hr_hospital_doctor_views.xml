@@ -24,9 +24,18 @@
                             <field name="name"/>
                             <field name="specialty"/>
                             <field name="category_id"/>
+                            <field name="is_intern"/>
+                            <field name="mentor_id"
+                                   domain="[('is_intern', '=', False)]"
+                                   invisible="not is_intern"/>
                             <field name="active"/>
                         </group>
                         <group>
+                            <field name="user_id"/>
+                            <field name="gender"/>
+                            <field name="birth_date"/>
+                            <field name="age"/>
+                            <field name="blood_group"/>
                             <field name="phone"/>
                             <field name="email"/>
                         </group>
@@ -38,7 +47,8 @@
                                     <field name="name"/>
                                     <field name="patient_id"/>
                                     <field name="disease_id"/>
-                                    <field name="visit_date"/>
+                                    <field name="state"/>
+                                    <field name="scheduled_datetime"/>
                                 </list>
                             </field>
                         </page>
