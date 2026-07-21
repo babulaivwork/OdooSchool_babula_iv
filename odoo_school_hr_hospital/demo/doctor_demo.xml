@@ -1,6 +1,7 @@
 <odoo>
     <record id="doctor_demo_1" model="os.hr.hospital.doctor">
         <field name="name">Олена Коваль</field>
+        <field name="category_id" ref="doctor_category_intern"/>
         <field name="specialty">Терапевт</field>
         <field name="phone">+380501112233</field>
         <field name="email">olena.koval@example.com</field>
@@ -9,6 +10,7 @@
 
     <record id="doctor_demo_2" model="os.hr.hospital.doctor">
         <field name="name">Андрій Мельник</field>
+        <field name="category_id" ref="doctor_category_specialist"/>
         <field name="specialty">Пульмонолог</field>
         <field name="phone">+380672223344</field>
         <field name="email">andrii.melnyk@example.com</field>
@@ -17,6 +19,7 @@
 
     <record id="doctor_demo_3" model="os.hr.hospital.doctor">
         <field name="name">Ірина Шевченко</field>
+        <field name="category_id" ref="doctor_category_highest"/>
         <field name="specialty">Алерголог</field>
         <field name="phone">+380933334455</field>
         <field name="email">iryna.shevchenko@example.com</field>

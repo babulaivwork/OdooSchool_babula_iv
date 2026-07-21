@@ -1,8 +1,4 @@
-import logging
-
 from odoo import fields, models
-
-_logger = logging.getLogger(__name__)
 
 
 class OSHrHospitalDoctor(models.Model):
@@ -15,6 +11,11 @@ class OSHrHospitalDoctor(models.Model):
     phone = fields.Char()
     email = fields.Char()
     notes = fields.Text()
+    category_id = fields.Many2one(
+        comodel_name='os.hr.hospital.doctor.category',
+        string='Qualification',
+        ondelete='set null',
+    )
 
     visit_ids = fields.One2many(
         comodel_name='os.hr.hospital.visit',

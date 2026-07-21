@@ -6,6 +6,7 @@
             <list>
                 <field name="name"/>
                 <field name="specialty"/>
+                <field name="category_id"/>
                 <field name="phone"/>
                 <field name="email"/>
             </list>
@@ -22,6 +23,7 @@
                         <group>
                             <field name="name"/>
                             <field name="specialty"/>
+                            <field name="category_id"/>
                             <field name="active"/>
                         </group>
                         <group>

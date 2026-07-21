@@ -3,3 +3,5 @@ access_odoo_school_hr_hospital_doctor_user,access.os.hr.hospital.doctor.user,mod
 access_odoo_school_hr_hospital_patient_user,access.os.hr.hospital.patient.user,model_os_hr_hospital_patient,base.group_user,1,1,1,1
 access_odoo_school_hr_hospital_disease_user,access.os.hr.hospital.disease.user,model_os_hr_hospital_disease,base.group_user,1,1,1,1
 access_odoo_school_hr_hospital_visit_user,access.os.hr.hospital.visit.user,model_os_hr_hospital_visit,base.group_user,1,1,1,1
+access_odoo_school_hr_hospital_doctor_category_user,access.os.hr.hospital.doctor.category.user,model_os_hr_hospital_doctor_category,base.group_user,1,1,1,1
+access_odoo_school_hr_hospital_doctor_history_user,access.os.hr.hospital.doctor.history.user,model_os_hr_hospital_doctor_history,base.group_user,1,1,1,1
