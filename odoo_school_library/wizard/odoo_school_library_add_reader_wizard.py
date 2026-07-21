@@ -1,6 +1,6 @@
 import logging
 
-from odoo import models, fields, api
+from odoo import api, fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -23,11 +23,9 @@ class OSLAddReader(models.TransientModel):
     def default_get(self, fields):
         res = super().default_get(fields)
         if self.env.context.get('active_id'):
-            book_id = self.env['odoo.school.library.book'].browse(
-                self.env.context.get('active_id'))
+            book_id = self.env['odoo.school.library.book'].browse(self.env.context.get('active_id'))
             res['ods_book_id'] = book_id.id
-            res['res_partner_ids'] = [
-                (6, 0, book_id.res_partner_readers_ids.ids)]
+            res['res_partner_ids'] = [(6, 0, book_id.res_partner_readers_ids.ids)]
         return res
 
     def add_reader(self):

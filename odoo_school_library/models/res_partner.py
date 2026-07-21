@@ -1,12 +1,12 @@
 import logging
 
-from odoo import models, fields, api
+from odoo import api, fields, models
 
 _logger = logging.getLogger(__name__)
 
 
 class ResPartner(models.Model):
-    _inherit = "res.partner"
+    _inherit = 'res.partner'
 
     is_ods_author = fields.Boolean()
     ods_book_ids = fields.One2many(
@@ -27,7 +27,6 @@ class ResPartner(models.Model):
     @api.depends('name', 'ods_book_ids')
     def _compute_display_name(self):
         for obj in self:
-            book_names = ','.join(
-                [f"'{book.name}'" for book in obj.ods_book_ids])
+            book_names = ','.join([f"'{book.name}'" for book in obj.ods_book_ids])
             display_name = (obj.name or '') + ' ' + (book_names or '')
             obj.display_name = display_name

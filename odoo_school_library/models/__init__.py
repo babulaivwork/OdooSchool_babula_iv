@@ -1,2 +1,2 @@
-from . import odoo_sсhool_library_book
+from . import odoo_school_library_book
 from . import res_partner
