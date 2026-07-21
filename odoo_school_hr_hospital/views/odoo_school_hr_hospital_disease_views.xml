@@ -4,7 +4,7 @@
         <field name="model">os.hr.hospital.disease</field>
         <field name="arch" type="xml">
             <list>
-                <field name="name"/>
+                <field name="display_name"/>
                 <field name="code"/>
                 <field name="description"/>
             </list>
@@ -20,6 +20,7 @@
                     <group>
                         <group>
                             <field name="name"/>
+                            <field name="parent_id"/>
                             <field name="code"/>
                             <field name="active"/>
                         </group>
@@ -27,6 +28,15 @@
                     <notebook>
                         <page string="Description">
                             <field name="description"/>
+                        </page>
+                        <page string="Child Diseases">
+                            <field name="child_ids">
+                                <list>
+                                    <field name="display_name"/>
+                                    <field name="code"/>
+                                    <field name="active"/>
+                                </list>
+                            </field>
                         </page>
                         <page string="Visits">
                             <field name="visit_ids">
