@@ -1,4 +1,5 @@
-<odoo>
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
 
     <record id="osl_author_demo_1" model="res.partner">
         <field name="name">Harper Lee</field>
