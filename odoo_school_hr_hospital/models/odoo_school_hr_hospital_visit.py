@@ -34,12 +34,41 @@ class OSHrHospitalVisit(models.Model):
         comodel_name='os.hr.hospital.disease',
         string='Disease',
     )
+    disease_visit_count = fields.Integer(
+        string='Visits',
+        compute='_compute_disease_visit_count',
+    )
     scheduled_datetime = fields.Datetime(
         string='Scheduled Date and Time',
         default=fields.Datetime.now,
         required=True,
     )
     actual_datetime = fields.Datetime(string='Actual Date and Time')
+
+    @api.depends(
+        'disease_id',
+        'disease_id.visit_ids',
+        'disease_id.visit_ids.active',
+    )
+    def _compute_disease_visit_count(self):
+        visit_count_by_disease = dict(
+            self.env['os.hr.hospital.visit']._read_group(
+                domain=[('disease_id', 'in', self.disease_id.ids)],
+                groupby=['disease_id'],
+                aggregates=['__count'],
+            )
+        )
+        for visit in self:
+            visit.disease_visit_count = visit_count_by_disease.get(visit.disease_id, 0)
+
+    def action_open_disease_visits(self):
+        self.ensure_one()
+        action = self.env['ir.actions.act_window']._for_xml_id(
+            'odoo_school_hr_hospital.action_odoo_school_hr_hospital_visit_window'
+        )
+        action['context'] = {}
+        action['domain'] = [('disease_id', '=', self.disease_id.id)]
+        return action
 
     def write(self, vals):
         completed_visits = self.filtered(lambda visit: visit.state == 'completed')

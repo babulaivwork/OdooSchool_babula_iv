@@ -66,4 +66,72 @@
         <field name="scheduled_datetime">2026-07-12 15:00:00</field>
         <field name="description">The follow-up visit was cancelled at the patient's request.</field>
     </record>
+
+    <record id="visit_demo_scheduled_3" model="os.hr.hospital.visit">
+        <field name="name">Bronchitis Recovery Review</field>
+        <field name="state">scheduled</field>
+        <field name="patient_id" ref="patient_demo_3"/>
+        <field name="doctor_id" ref="doctor_demo_1"/>
+        <field name="disease_id" ref="disease_bronchitis"/>
+        <field name="scheduled_datetime">2026-09-08 10:30:00</field>
+        <field name="description">A scheduled review of respiratory health after bronchitis treatment.</field>
+    </record>
+
+    <record id="visit_demo_scheduled_4" model="os.hr.hospital.visit">
+        <field name="name">Autumn Allergy Consultation</field>
+        <field name="state">scheduled</field>
+        <field name="patient_id" ref="patient_demo_1"/>
+        <field name="doctor_id" ref="doctor_demo_3"/>
+        <field name="disease_id" ref="disease_allergy"/>
+        <field name="scheduled_datetime">2026-10-14 13:15:00</field>
+        <field name="description">A consultation to evaluate recurring autumn allergy symptoms.</field>
+    </record>
+
+    <record id="visit_demo_completed_3" model="os.hr.hospital.visit">
+        <field name="name">Bronchitis Treatment Review</field>
+        <field name="state">completed</field>
+        <field name="patient_id" ref="patient_demo_2"/>
+        <field name="doctor_id" ref="doctor_demo_2"/>
+        <field name="disease_id" ref="disease_bronchitis"/>
+        <field name="scheduled_datetime">2026-01-21 09:45:00</field>
+        <field name="actual_datetime">2026-01-21 09:52:00</field>
+        <field name="description">A completed review of the patient's response to bronchitis treatment.</field>
+        <field name="summary" type="html">
+            <p>Respiratory symptoms have improved. The patient should complete the prescribed treatment and return if symptoms recur.</p>
+        </field>
+    </record>
+
+    <record id="visit_demo_completed_4" model="os.hr.hospital.visit">
+        <field name="name">Influenza Recovery Assessment</field>
+        <field name="state">completed</field>
+        <field name="patient_id" ref="patient_demo_3"/>
+        <field name="doctor_id" ref="doctor_demo_1"/>
+        <field name="disease_id" ref="disease_flu"/>
+        <field name="scheduled_datetime">2026-02-18 15:20:00</field>
+        <field name="actual_datetime">2026-02-18 15:28:00</field>
+        <field name="description">A completed assessment following recovery from influenza.</field>
+        <field name="summary" type="html">
+            <p>The patient has recovered well and may resume normal activity. Continued hydration and rest are recommended.</p>
+        </field>
+    </record>
+
+    <record id="visit_demo_cancelled_3" model="os.hr.hospital.visit">
+        <field name="name">Cancelled Influenza Consultation</field>
+        <field name="state">cancelled</field>
+        <field name="patient_id" ref="patient_demo_1"/>
+        <field name="doctor_id" ref="doctor_demo_2"/>
+        <field name="disease_id" ref="disease_flu"/>
+        <field name="scheduled_datetime">2026-03-11 11:00:00</field>
+        <field name="description">The influenza consultation was cancelled because the patient's symptoms improved.</field>
+    </record>
+
+    <record id="visit_demo_cancelled_4" model="os.hr.hospital.visit">
+        <field name="name">Cancelled Allergy Screening</field>
+        <field name="state">cancelled</field>
+        <field name="patient_id" ref="patient_demo_2"/>
+        <field name="doctor_id" ref="doctor_demo_3"/>
+        <field name="disease_id" ref="disease_allergy"/>
+        <field name="scheduled_datetime">2026-04-23 16:10:00</field>
+        <field name="description">The allergy screening was cancelled due to a scheduling conflict.</field>
+    </record>
 </odoo>
