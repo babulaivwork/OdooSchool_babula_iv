@@ -44,7 +44,10 @@ class OSHrHospitalVisit(models.Model):
     def write(self, vals):
         completed_visits = self.filtered(lambda visit: visit.state == 'completed')
         archived_completed_visits = self.filtered(
-            lambda visit: vals.get('state', visit.state) == 'completed' and not vals.get('active', visit.active)
+            lambda visit: (
+                (visit.state == 'completed' or vals.get('state') == 'completed')
+                and not vals.get('active', visit.active)
+            )
         )
         if archived_completed_visits:
             raise UserError('Completed visits cannot be archived.')
@@ -53,10 +56,9 @@ class OSHrHospitalVisit(models.Model):
             'doctor_id',
             'scheduled_datetime',
             'actual_datetime',
-            'state',
         }
         if completed_visits and protected_fields.intersection(vals):
-            raise UserError('The doctor, dates, and status of a completed visit cannot be changed.')
+            raise UserError('The doctor and dates of a completed visit cannot be changed.')
 
         return super().write(vals)
 

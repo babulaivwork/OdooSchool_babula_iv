@@ -8,7 +8,10 @@ class OSHrHospitalDisease(models.Model):
     _parent_name = 'parent_id'
     _parent_store = True
 
-    display_name = fields.Char(recursive=True)
+    display_name = fields.Char(
+        compute='_compute_display_name',
+        recursive=True,
+    )
     name = fields.Char()
     active = fields.Boolean(default=True)
     description = fields.Text()

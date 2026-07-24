@@ -38,7 +38,9 @@ class OSHrHospitalDoctorHistory(models.Model):
             assignment_date = fields.Date.to_string(history.assignment_date)
 
             if patient_name and doctor_name:
-                display_name = f'{patient_name} - {doctor_name} ({category_name})'
+                display_name = f'{patient_name} - {doctor_name}'
+                if category_name:
+                    display_name += f' ({category_name})'
             else:
                 display_name = patient_name or doctor_name or 'New Doctor History'
                 if category_name:
