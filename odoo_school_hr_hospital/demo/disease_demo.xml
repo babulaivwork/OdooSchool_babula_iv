@@ -1,0 +1,34 @@
+<odoo>
+    <record id="disease_respiratory" model="os.hr.hospital.disease">
+        <field name="name">Respiratory Diseases</field>
+        <field name="code">RESP</field>
+        <field name="description">Diseases that affect the respiratory system.</field>
+    </record>
+
+    <record id="disease_allergic" model="os.hr.hospital.disease">
+        <field name="name">Allergic Diseases</field>
+        <field name="code">ALL</field>
+        <field name="description">Diseases caused by an immune response to allergens.</field>
+    </record>
+
+    <record id="disease_flu" model="os.hr.hospital.disease">
+        <field name="name">Influenza</field>
+        <field name="code">FLU</field>
+        <field name="description">An acute viral respiratory disease.</field>
+        <field name="parent_id" ref="disease_respiratory"/>
+    </record>
+
+    <record id="disease_bronchitis" model="os.hr.hospital.disease">
+        <field name="name">Bronchitis</field>
+        <field name="code">BRN</field>
+        <field name="description">An inflammatory disease of the bronchi.</field>
+        <field name="parent_id" ref="disease_respiratory"/>
+    </record>
+
+    <record id="disease_allergy" model="os.hr.hospital.disease">
+        <field name="name">Allergy</field>
+        <field name="code">ALG</field>
+        <field name="description">An increased sensitivity of the body to allergens.</field>
+        <field name="parent_id" ref="disease_allergic"/>
+    </record>
+</odoo>

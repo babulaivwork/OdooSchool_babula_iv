@@ -1,7 +1,7 @@
 <odoo>
     <record id="odoo_school_hr_hospital_patient_list" model="ir.ui.view">
-        <field name="name">odoo.school.hr.hospital.patient.list</field>
-        <field name="model">odoo.school.hr.hospital.patient</field>
+        <field name="name">os.hr.hospital.patient.list</field>
+        <field name="model">os.hr.hospital.patient</field>
         <field name="arch" type="xml">
             <list>
                 <field name="name"/>
@@ -13,21 +13,26 @@
     </record>
 
     <record id="odoo_school_hr_hospital_patient_form" model="ir.ui.view">
-        <field name="name">odoo.school.hr.hospital.patient.form</field>
-        <field name="model">odoo.school.hr.hospital.patient</field>
+        <field name="name">os.hr.hospital.patient.form</field>
+        <field name="model">os.hr.hospital.patient</field>
         <field name="arch" type="xml">
             <form>
                 <sheet>
                     <group>
                         <group>
                             <field name="name"/>
+                            <field name="gender"/>
                             <field name="birth_date"/>
+                            <field name="age"/>
+                            <field name="blood_group"/>
+                            <field name="personal_doctor_id"/>
                             <field name="active"/>
                         </group>
                         <group>
                             <field name="phone"/>
                             <field name="email"/>
                             <field name="address"/>
+                            <field name="insurance_policy_number"/>
                         </group>
                     </group>
                     <notebook>
@@ -37,7 +42,18 @@
                                     <field name="name"/>
                                     <field name="doctor_id"/>
                                     <field name="disease_id"/>
-                                    <field name="visit_date"/>
+                                    <field name="state"/>
+                                    <field name="scheduled_datetime"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Personal Doctor History">
+                            <field name="doctor_history_ids">
+                                <list>
+                                    <field name="doctor_id"/>
+                                    <field name="assignment_date"/>
+                                    <field name="change_date"/>
+                                    <field name="active"/>
                                 </list>
                             </field>
                         </page>
@@ -53,7 +69,7 @@
     <record id="action_odoo_school_hr_hospital_patient_window" model="ir.actions.act_window">
         <field name="name">Patients</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">odoo.school.hr.hospital.patient</field>
+        <field name="res_model">os.hr.hospital.patient</field>
         <field name="view_mode">list,form</field>
     </record>
 

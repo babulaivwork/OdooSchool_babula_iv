@@ -1,0 +1,69 @@
+<odoo>
+    <record id="visit_demo_scheduled_1" model="os.hr.hospital.visit">
+        <field name="name">Annual Health Check</field>
+        <field name="state">scheduled</field>
+        <field name="patient_id" ref="patient_demo_1"/>
+        <field name="doctor_id" ref="doctor_demo_1"/>
+        <field name="disease_id" ref="disease_flu"/>
+        <field name="scheduled_datetime">2026-08-03 09:00:00</field>
+        <field name="description">Scheduled follow-up examination after recovery.</field>
+    </record>
+
+    <record id="visit_demo_scheduled_2" model="os.hr.hospital.visit">
+        <field name="name">Respiratory Consultation</field>
+        <field name="state">scheduled</field>
+        <field name="patient_id" ref="patient_demo_2"/>
+        <field name="doctor_id" ref="doctor_demo_2"/>
+        <field name="disease_id" ref="disease_bronchitis"/>
+        <field name="scheduled_datetime">2026-08-04 11:30:00</field>
+        <field name="description">Consultation regarding recurring respiratory symptoms.</field>
+    </record>
+
+    <record id="visit_demo_completed_1" model="os.hr.hospital.visit">
+        <field name="name">Post-Flu Examination</field>
+        <field name="state">completed</field>
+        <field name="patient_id" ref="patient_demo_1"/>
+        <field name="doctor_id" ref="doctor_demo_2"/>
+        <field name="disease_id" ref="disease_flu"/>
+        <field name="scheduled_datetime">2026-06-15 10:00:00</field>
+        <field name="actual_datetime">2026-06-15 10:05:00</field>
+        <field name="description">Follow-up examination after influenza treatment.</field>
+        <field name="summary" type="html">
+            <p>The patient recovered without complications. Routine observation is recommended.</p>
+        </field>
+    </record>
+
+    <record id="visit_demo_completed_2" model="os.hr.hospital.visit">
+        <field name="name">Allergy Assessment</field>
+        <field name="state">completed</field>
+        <field name="patient_id" ref="patient_demo_3"/>
+        <field name="doctor_id" ref="doctor_demo_3"/>
+        <field name="disease_id" ref="disease_allergy"/>
+        <field name="scheduled_datetime">2026-06-20 14:00:00</field>
+        <field name="actual_datetime">2026-06-20 14:10:00</field>
+        <field name="description">Assessment of seasonal allergy symptoms.</field>
+        <field name="summary" type="html">
+            <p>Seasonal allergy was confirmed. The prescribed treatment should be continued.</p>
+        </field>
+    </record>
+
+    <record id="visit_demo_cancelled_1" model="os.hr.hospital.visit">
+        <field name="name">Cancelled Therapy Consultation</field>
+        <field name="state">cancelled</field>
+        <field name="patient_id" ref="patient_demo_2"/>
+        <field name="doctor_id" ref="doctor_demo_1"/>
+        <field name="disease_id" ref="disease_flu"/>
+        <field name="scheduled_datetime">2026-07-10 09:30:00</field>
+        <field name="description">The patient cancelled the consultation in advance.</field>
+    </record>
+
+    <record id="visit_demo_cancelled_2" model="os.hr.hospital.visit">
+        <field name="name">Cancelled Allergy Follow-up</field>
+        <field name="state">cancelled</field>
+        <field name="patient_id" ref="patient_demo_3"/>
+        <field name="doctor_id" ref="doctor_demo_3"/>
+        <field name="disease_id" ref="disease_allergy"/>
+        <field name="scheduled_datetime">2026-07-12 15:00:00</field>
+        <field name="description">The follow-up visit was cancelled at the patient's request.</field>
+    </record>
+</odoo>

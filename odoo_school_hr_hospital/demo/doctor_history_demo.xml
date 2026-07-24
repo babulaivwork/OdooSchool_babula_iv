@@ -1,0 +1,30 @@
+<odoo>
+    <record id="doctor_history_demo_1" model="os.hr.hospital.doctor.history">
+        <field name="patient_id" ref="patient_demo_1"/>
+        <field name="doctor_id" ref="doctor_demo_1"/>
+        <field name="assignment_date">2024-01-15</field>
+        <field name="change_date">2024-06-30</field>
+        <field name="active" eval="True"/>
+    </record>
+
+    <record id="doctor_history_demo_2" model="os.hr.hospital.doctor.history">
+        <field name="patient_id" ref="patient_demo_1"/>
+        <field name="doctor_id" ref="doctor_demo_2"/>
+        <field name="assignment_date">2024-07-01</field>
+        <field name="active" eval="True"/>
+    </record>
+
+    <record id="doctor_history_demo_3" model="os.hr.hospital.doctor.history">
+        <field name="patient_id" ref="patient_demo_2"/>
+        <field name="doctor_id" ref="doctor_demo_2"/>
+        <field name="assignment_date">2024-02-01</field>
+        <field name="active" eval="True"/>
+    </record>
+
+    <record id="doctor_history_demo_4" model="os.hr.hospital.doctor.history">
+        <field name="patient_id" ref="patient_demo_3"/>
+        <field name="doctor_id" ref="doctor_demo_3"/>
+        <field name="assignment_date">2024-03-01</field>
+        <field name="active" eval="True"/>
+    </record>
+</odoo>
