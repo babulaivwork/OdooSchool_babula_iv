@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class OSHrHospitalPatient(models.Model):
@@ -32,3 +32,44 @@ class OSHrHospitalPatient(models.Model):
         inverse_name='patient_id',
         string='Visits',
     )
+    visit_count = fields.Integer(
+        string='Visits',
+        compute='_compute_visit_count',
+    )
+
+    @api.depends('visit_ids', 'visit_ids.active')
+    def _compute_visit_count(self):
+        visit_count_by_patient = dict(
+            self.env['os.hr.hospital.visit']._read_group(
+                domain=[('patient_id', 'in', self.ids)],
+                groupby=['patient_id'],
+                aggregates=['__count'],
+            )
+        )
+        for patient in self:
+            patient.visit_count = visit_count_by_patient.get(patient, 0)
+
+    def action_open_visits(self):
+        self.ensure_one()
+        action = self.env['ir.actions.act_window']._for_xml_id(
+            'odoo_school_hr_hospital.action_odoo_school_hr_hospital_visit_window'
+        )
+        action['context'] = {}
+        action['domain'] = [('patient_id', '=', self.id)]
+        return action
+
+    def action_create_visit(self):
+        self.ensure_one()
+        visit_form = self.env.ref('odoo_school_hr_hospital.odoo_school_hr_hospital_visit_form')
+        return {
+            'name': 'Create Visit',
+            'type': 'ir.actions.act_window',
+            'res_model': 'os.hr.hospital.visit',
+            'view_mode': 'form',
+            'views': [(visit_form.id, 'form')],
+            'target': 'new',
+            'context': {
+                'default_patient_id': self.id,
+                'default_doctor_id': self.personal_doctor_id.id or False,
+            },
+        }
