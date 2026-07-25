@@ -1,5 +1,5 @@
 <odoo>
-    <record id="odoo_school_hr_hospital_mass_reassign_doctor_wizard_form" model="ir.ui.view">
+    <record id="os_hr_hospital_mass_reassign_doctor_wizard_form" model="ir.ui.view">
         <field name="name">os.hr.hospital.mass.reassign.doctor.wizard.form</field>
         <field name="model">os.hr.hospital.mass.reassign.doctor.wizard</field>
         <field name="arch" type="xml">
@@ -21,11 +21,11 @@
         </field>
     </record>
 
-    <record id="action_odoo_school_hr_hospital_mass_reassign_doctor_wizard" model="ir.actions.act_window">
+    <record id="os_hr_hospital_action_mass_reassign_doctor_wizard" model="ir.actions.act_window">
         <field name="name">Mass Reassign Personal Doctor</field>
         <field name="res_model">os.hr.hospital.mass.reassign.doctor.wizard</field>
         <field name="view_mode">form</field>
-        <field name="view_id" ref="odoo_school_hr_hospital_mass_reassign_doctor_wizard_form"/>
+        <field name="view_id" ref="os_hr_hospital_mass_reassign_doctor_wizard_form"/>
         <field name="target">new</field>
         <field name="binding_model_id" ref="model_os_hr_hospital_patient"/>
         <field name="binding_type">action</field>

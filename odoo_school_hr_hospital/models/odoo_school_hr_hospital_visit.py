@@ -64,7 +64,7 @@ class OSHrHospitalVisit(models.Model):
     def action_open_disease_visits(self):
         self.ensure_one()
         action = self.env['ir.actions.act_window']._for_xml_id(
-            'odoo_school_hr_hospital.action_odoo_school_hr_hospital_visit_window'
+            'odoo_school_hr_hospital.os_hr_hospital_action_visit_window'
         )
         action['context'] = {}
         action['domain'] = [('disease_id', '=', self.disease_id.id)]

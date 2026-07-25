@@ -1,9 +1,9 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_odoo_school_hr_hospital_doctor_user,access.os.hr.hospital.doctor.user,model_os_hr_hospital_doctor,base.group_user,1,1,1,1
-access_odoo_school_hr_hospital_patient_user,access.os.hr.hospital.patient.user,model_os_hr_hospital_patient,base.group_user,1,1,1,1
-access_odoo_school_hr_hospital_disease_user,access.os.hr.hospital.disease.user,model_os_hr_hospital_disease,base.group_user,1,1,1,1
-access_odoo_school_hr_hospital_visit_user,access.os.hr.hospital.visit.user,model_os_hr_hospital_visit,base.group_user,1,1,1,1
-access_odoo_school_hr_hospital_doctor_category_user,access.os.hr.hospital.doctor.category.user,model_os_hr_hospital_doctor_category,base.group_user,1,1,1,1
-access_odoo_school_hr_hospital_doctor_history_user,access.os.hr.hospital.doctor.history.user,model_os_hr_hospital_doctor_history,base.group_user,1,1,1,1
-access_odoo_school_hr_hospital_mass_reassign_doctor_wizard_user,access.os.hr.hospital.mass.reassign.doctor.wizard.user,model_os_hr_hospital_mass_reassign_doctor_wizard,base.group_user,1,1,1,1
-access_odoo_school_hr_hospital_visit_report_wizard_user,access.os.hr.hospital.visit.report.wizard.user,model_os_hr_hospital_visit_report_wizard,base.group_user,1,1,1,1
+access_os_hr_hospital_doctor_user,access.os.hr.hospital.doctor.user,model_os_hr_hospital_doctor,base.group_user,1,1,1,1
+access_os_hr_hospital_patient_user,access.os.hr.hospital.patient.user,model_os_hr_hospital_patient,base.group_user,1,1,1,1
+access_os_hr_hospital_disease_user,access.os.hr.hospital.disease.user,model_os_hr_hospital_disease,base.group_user,1,1,1,1
+access_os_hr_hospital_visit_user,access.os.hr.hospital.visit.user,model_os_hr_hospital_visit,base.group_user,1,1,1,1
+access_os_hr_hospital_doctor_category_user,access.os.hr.hospital.doctor.category.user,model_os_hr_hospital_doctor_category,base.group_user,1,1,1,1
+access_os_hr_hospital_doctor_history_user,access.os.hr.hospital.doctor.history.user,model_os_hr_hospital_doctor_history,base.group_user,1,1,1,1
+access_os_hr_hospital_mass_reassign_doctor_wizard_user,access.os.hr.hospital.mass.reassign.doctor.wizard.user,model_os_hr_hospital_mass_reassign_doctor_wizard,base.group_user,1,1,1,1
+access_os_hr_hospital_visit_report_wizard_user,access.os.hr.hospital.visit.report.wizard.user,model_os_hr_hospital_visit_report_wizard,base.group_user,1,1,1,1

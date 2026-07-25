@@ -70,7 +70,7 @@ class OSHrHospitalVisitReportWizard(models.TransientModel):
             domain &= Domain('disease_id', 'child_of', self.disease_id.id)
 
         action = self.env['ir.actions.act_window']._for_xml_id(
-            'odoo_school_hr_hospital.action_odoo_school_hr_hospital_visit_window'
+            'odoo_school_hr_hospital.os_hr_hospital_action_visit_window'
         )
         action['domain'] = domain
         return action

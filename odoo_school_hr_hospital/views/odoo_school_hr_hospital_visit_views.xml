@@ -1,5 +1,5 @@
 <odoo>
-    <record id="odoo_school_hr_hospital_visit_list" model="ir.ui.view">
+    <record id="os_hr_hospital_visit_list" model="ir.ui.view">
         <field name="name">os.hr.hospital.visit.list</field>
         <field name="model">os.hr.hospital.visit</field>
         <field name="arch" type="xml">
@@ -15,7 +15,7 @@
         </field>
     </record>
 
-    <record id="odoo_school_hr_hospital_visit_form" model="ir.ui.view">
+    <record id="os_hr_hospital_visit_form" model="ir.ui.view">
         <field name="name">os.hr.hospital.visit.form</field>
         <field name="model">os.hr.hospital.visit</field>
         <field name="arch" type="xml">
@@ -64,7 +64,7 @@
         </field>
     </record>
 
-    <record id="odoo_school_hr_hospital_visit_calendar" model="ir.ui.view">
+    <record id="os_hr_hospital_visit_calendar" model="ir.ui.view">
         <field name="name">os.hr.hospital.visit.calendar</field>
         <field name="model">os.hr.hospital.visit</field>
         <field name="arch" type="xml">
@@ -81,7 +81,7 @@
         </field>
     </record>
 
-    <record id="odoo_school_hr_hospital_visit_search" model="ir.ui.view">
+    <record id="os_hr_hospital_visit_search" model="ir.ui.view">
         <field name="name">os.hr.hospital.visit.search</field>
         <field name="model">os.hr.hospital.visit</field>
         <field name="arch" type="xml">
@@ -109,7 +109,7 @@
         </field>
     </record>
 
-    <record id="odoo_school_hr_hospital_visit_pivot" model="ir.ui.view">
+    <record id="os_hr_hospital_visit_pivot" model="ir.ui.view">
         <field name="name">os.hr.hospital.visit.pivot</field>
         <field name="model">os.hr.hospital.visit</field>
         <field name="arch" type="xml">
@@ -121,7 +121,7 @@
         </field>
     </record>
 
-    <record id="odoo_school_hr_hospital_visit_graph" model="ir.ui.view">
+    <record id="os_hr_hospital_visit_graph" model="ir.ui.view">
         <field name="name">os.hr.hospital.visit.graph</field>
         <field name="model">os.hr.hospital.visit</field>
         <field name="arch" type="xml">
@@ -132,17 +132,17 @@
         </field>
     </record>
 
-    <record id="action_odoo_school_hr_hospital_visit_window" model="ir.actions.act_window">
+    <record id="os_hr_hospital_action_visit_window" model="ir.actions.act_window">
         <field name="name">Visits</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">os.hr.hospital.visit</field>
         <field name="view_mode">list,form,calendar,pivot,graph</field>
-        <field name="search_view_id" ref="odoo_school_hr_hospital_visit_search"/>
+        <field name="search_view_id" ref="os_hr_hospital_visit_search"/>
         <field name="context">{'search_default_current_year': 1}</field>
     </record>
 
-    <menuitem id="odoo_school_hr_hospital_menu_visit"
-              action="action_odoo_school_hr_hospital_visit_window"
-              parent="odoo_school_hr_hospital_main_menu"
+    <menuitem id="os_hr_hospital_menu_visit"
+              action="os_hr_hospital_action_visit_window"
+              parent="os_hr_hospital_main_menu"
               name="Visits" sequence="400"/>
 </odoo>

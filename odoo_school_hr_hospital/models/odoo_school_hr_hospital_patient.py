@@ -52,7 +52,7 @@ class OSHrHospitalPatient(models.Model):
     def action_open_visits(self):
         self.ensure_one()
         action = self.env['ir.actions.act_window']._for_xml_id(
-            'odoo_school_hr_hospital.action_odoo_school_hr_hospital_visit_window'
+            'odoo_school_hr_hospital.os_hr_hospital_action_visit_window'
         )
         action['context'] = {}
         action['domain'] = [('patient_id', '=', self.id)]
@@ -60,7 +60,7 @@ class OSHrHospitalPatient(models.Model):
 
     def action_create_visit(self):
         self.ensure_one()
-        visit_form = self.env.ref('odoo_school_hr_hospital.odoo_school_hr_hospital_visit_form')
+        visit_form = self.env.ref('odoo_school_hr_hospital.os_hr_hospital_visit_form')
         return {
             'name': 'Create Visit',
             'type': 'ir.actions.act_window',
