@@ -55,11 +55,31 @@
         </field>
     </record>
 
+    <record id="os_hr_hospital_disease_search" model="ir.ui.view">
+        <field name="name">os.hr.hospital.disease.search</field>
+        <field name="model">os.hr.hospital.disease</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="parent_id"/>
+                <searchpanel view_types="list">
+                    <field name="parent_id"
+                           string="Diseases"
+                           select="one"
+                           hierarchize="1"
+                           expand="1"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
     <record id="os_hr_hospital_action_disease_window" model="ir.actions.act_window">
         <field name="name">Diseases</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">os.hr.hospital.disease</field>
         <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="os_hr_hospital_disease_search"/>
     </record>
 
     <menuitem id="os_hr_hospital_menu_disease"

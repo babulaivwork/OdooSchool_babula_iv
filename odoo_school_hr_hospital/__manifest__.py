@@ -3,7 +3,7 @@
     'author': 'Odoo School Student',
     'website': 'https://odoo.school/',
     'category': 'Customizations',
-    'version': '19.0.6.0.0',
+    'version': '19.0.7.0.0',
     'license': 'OPL-1',
 
     'depends': [
@@ -18,6 +18,7 @@
         'security/ir.model.access.csv',
         'wizard/odoo_school_hr_hospital_mass_reassign_doctor_wizard_views.xml',
         'wizard/odoo_school_hr_hospital_visit_report_wizard_views.xml',
+        'wizard/odoo_school_hr_hospital_disease_report_wizard_views.xml',
         'data/doctor_category_data.xml',
         'views/odoo_school_hr_hospital_menu_views.xml',
         'views/odoo_school_hr_hospital_doctor_views.xml',
