@@ -1,4 +1,4 @@
 from . import (
     res_partner,
-    odoo_sсhool_library_book,
+    odoo_school_library_book,
 )

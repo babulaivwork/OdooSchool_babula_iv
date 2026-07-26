@@ -1,10 +1,10 @@
 import logging
 
-from odoo import models, fields, api
+from odoo import api, fields, models
 
 _logger = logging.getLogger(__name__)
 
-CONST_EXP = "Odoo school constant example"
+CONST_EXP = 'Odoo school constant example'
 
 
 class OSLBook(models.Model):
@@ -41,7 +41,7 @@ class OSLBook(models.Model):
         default=lambda self: self.env.company,
     )
     company_currency_id = fields.Many2one(
-        comodel_name="res.currency",
+        comodel_name='res.currency',
         string='Currency',
         related='company_id.currency_id',
         readonly=True,
@@ -51,40 +51,36 @@ class OSLBook(models.Model):
         currency_field='company_currency_id',
     )
     inventory_state = fields.Selection(
-        [('available', 'Available'),
-         ('pending', 'Pending'),
-         ('out_of_stock', 'Out of stock')],
-        default="out_of_stock",
+        [('available', 'Available'), ('pending', 'Pending'), ('out_of_stock', 'Out of stock')],
+        default='out_of_stock',
         string='Inventory State',
     )
     res_partner_id = fields.Many2one(
         comodel_name='res.partner',
-        string="Main Author",
+        string='Main Author',
         index=True,
-        help="Main Author who created this book",
+        help='Main Author who created this book',
         domain=[('is_ods_author', '=', True)],
         ondelete='set null',
     )
-    partner_country_name = fields.Char(
-        related='res_partner_id.country_id.name'
-    )
+    partner_country_name = fields.Char(related='res_partner_id.country_id.name')
     res_partner_ids = fields.Many2many(
         comodel_name='res.partner',
-        string="Additional Authors",
-        help="Additional Authors who took part in creating this book",
+        string='Additional Authors',
+        help='Additional Authors who took part in creating this book',
         readonly=False,
-        relation="osl_book_res_partner_rel",
-        column1="ods_book_id",
-        column2="res_partner_id",
+        relation='osl_book_res_partner_rel',
+        column1='ods_book_id',
+        column2='res_partner_id',
     )
     res_partner_readers_ids = fields.Many2many(
         comodel_name='res.partner',
-        string="Book readers",
-        help="At this moment they are reading the book",
+        string='Book readers',
+        help='At this moment they are reading the book',
         readonly=True,
-        relation="osl_book_res_partner_reader_rel",
-        column1="ods_book_id",
-        column2="res_partner_id",
+        relation='osl_book_res_partner_reader_rel',
+        column1='ods_book_id',
+        column2='res_partner_id',
     )
     book_cover_image = fields.Image(
         max_width=512,
@@ -101,9 +97,7 @@ class OSLBook(models.Model):
         default=fields.Date.today(),
     )
 
-    _sql_constraints = [
-        ('name_uniq', 'unique (name)', 'The book name must be unique!')
-    ]
+    _sql_constraints = [('name_uniq', 'unique (name)', 'The book name must be unique!')]
 
     def _default_all_authors_get(self):
         author_names = ''
@@ -115,8 +109,7 @@ class OSLBook(models.Model):
     @api.depends('res_partner_ids')
     def _compute_count(self):
         for obj in self:
-            obj.res_partner_count = (
-                len(obj.res_partner_ids.ids) + len(obj.res_partner_id.ids))
+            obj.res_partner_count = len(obj.res_partner_ids.ids) + len(obj.res_partner_id.ids)
 
     def show_to_author(self):
         self.ensure_one()
@@ -124,7 +117,7 @@ class OSLBook(models.Model):
 
         _logger.info(self.ids)
         _logger.info(self.res_partner_ids.ids)
-        _logger.info(f"Book price = {self._context.get('book_price')}")
+        _logger.info('Book price = %s', self._context.get('book_price'))
         pass
 
     def make_book_available(self):
@@ -150,14 +143,8 @@ class OSLBook(models.Model):
     def _send_log_books_status(self):
         book_ids = self.search([])
         _logger.info('Inventory state - available')
-        _logger.info([
-            o.name for o in book_ids.filtered(
-                lambda x: x.inventory_state == 'available')])
+        _logger.info([o.name for o in book_ids.filtered(lambda x: x.inventory_state == 'available')])
         _logger.info('Inventory state - pending')
-        _logger.info([
-            o.name for o in book_ids.filtered(
-                lambda x: x.inventory_state == 'pending')])
+        _logger.info([o.name for o in book_ids.filtered(lambda x: x.inventory_state == 'pending')])
         _logger.info('Inventory state - out_of_stock')
-        _logger.info([
-            o.name for o in book_ids.filtered(
-                lambda x: x.inventory_state == 'out_of_stock')])
+        _logger.info([o.name for o in book_ids.filtered(lambda x: x.inventory_state == 'out_of_stock')])
