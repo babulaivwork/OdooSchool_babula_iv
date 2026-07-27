@@ -70,7 +70,7 @@
             <field name="model_id" ref="base.model_res_partner"/>
             <field name="template_code">
                 <![CDATA[
-<p><t t-esc="docs"/></p>
+<p><t t-out="docs"/></p>
                 ]]>
             </field>
             <field name="domain">[]</field>

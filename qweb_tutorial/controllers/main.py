@@ -1,64 +1,71 @@
-from odoo import http
-from odoo.http import request
 from lxml import etree
+from markupsafe import Markup, escape
+
+from odoo import http
+from odoo.exceptions import UserError
+from odoo.http import request
+
+from odoo.addons.base.models.ir_qweb import QWebError
+
 
 class QWebTutorialController(http.Controller):
-
-    @http.route('/qweb_tutorial/render', type='http', auth='public', website=True, csrf=False)
+    @http.route(
+        '/qweb_tutorial/render',
+        type='http',
+        auth='public',
+        methods=['POST'],
+        website=True,
+    )
     def render_qweb(self, **kw):
         model_name = kw.get('model_name', '')
         template_code = kw.get('template_code', '')
-        rendered_html = ''
+        rendered_html = Markup()
 
         if model_name and template_code:
             try:
                 model = request.env[model_name]
-                records = model.search([])
+                records = model.search([], limit=10)
 
-                data = {
-                    'docs': records,
-                }
-
-                # Create an etree element from the template code
                 template_element = etree.fromstring(f"""
                 <templates>
                     <t t-name="custom_template">{template_code}</t>
                 </templates>
                 """)
 
-                qweb = request.env['ir.qweb']
-                rendered_html = qweb._render(template_element, data)
-            except Exception as e:
-                rendered_html = f"<div style='color: red;'>Error: {str(e)}</div>"
+                rendered_html = request.env['ir.qweb']._render(
+                    template_element,
+                    {'docs': records},
+                )
+            except (KeyError, TypeError, ValueError, etree.XMLSyntaxError, QWebError, UserError) as error:
+                rendered_html = Markup('<div class="alert alert-danger">Error: %s</div>') % escape(str(error))
 
         return request.make_response(rendered_html)
 
-    @http.route('/qweb_tutorial/render_new_window/<int:record_id>', type='http', auth='public', website=True, csrf=False)
+    @http.route(
+        '/qweb_tutorial/render_new_window/<int:record_id>',
+        type='http',
+        auth='public',
+        methods=['GET'],
+        website=True,
+    )
     def render_qweb_new_window(self, record_id, **kw):
         record = request.env['qweb.tutorial'].browse(record_id)
         if not record.exists():
             return request.not_found()
 
-        record._compute_rendered_html()
-
-        # Use a basic QWeb template for proper formatting
         qweb_template = """
         <t t-name="qweb_tutorial.render_template">
-            <html>
-                <head>
-                    <link rel="stylesheet" href="/web/static/lib/bootstrap/dist/css/bootstrap.css"/>
-                    <link rel="stylesheet" href="/web/static/src/css/webclient.css"/>
-                </head>
-                <body>
-                    <div class="container">
-                        <t t-raw="content"/>
-                    </div>
-                </body>
-            </html>
+            <t t-call="web.frontend_layout">
+                <div class="container py-4">
+                    <t t-out="content"/>
+                </div>
+            </t>
         </t>
         """
         template_element = etree.fromstring(qweb_template)
-        qweb = request.env['ir.qweb']
-        rendered_html = qweb._render(template_element, {'content': record.rendered_html})
+        rendered_html = request.env['ir.qweb']._render(
+            template_element,
+            {'content': record.rendered_html or Markup()},
+        )
 
         return request.make_response(rendered_html)
