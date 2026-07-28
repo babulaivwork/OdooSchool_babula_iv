@@ -71,6 +71,15 @@
                 <t t-call="odoo_school_hr_hospital.os_hr_hospital_doctor_report_layout">
                     <div class="page">
                         <style>
+                            .os_hr_hospital_report_table {
+                                width: 100%;
+                                border-collapse: collapse;
+                            }
+                            .os_hr_hospital_report_table th,
+                            .os_hr_hospital_report_table td {
+                                border: 1px solid #000 !important;
+                                padding: 5px;
+                            }
                             .os_hr_hospital_visit_scheduled > td {
                                 background-color: #fff3cd !important;
                                 -webkit-print-color-adjust: exact;
@@ -94,7 +103,7 @@
                         </div>
 
                         <h3>Visit History</h3>
-                        <table class="table table-sm table-bordered align-middle">
+                        <table class="table table-sm table-bordered align-middle os_hr_hospital_report_table">
                             <thead>
                                 <tr>
                                     <th>Scheduled Date and Time</th>
@@ -128,7 +137,7 @@
                         </table>
 
                         <h3 class="mt-4">Personal Patients</h3>
-                        <table class="table table-sm table-bordered align-middle">
+                        <table class="table table-sm table-bordered align-middle os_hr_hospital_report_table">
                             <thead>
                                 <tr>
                                     <th>Patient</th>
