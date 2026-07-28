@@ -14,7 +14,7 @@ class OSLBook(models.Model):
 
     name = fields.Char(
         size=64,
-        required=True,
+        required=False,
         translate=True,
         copy=False,
     )
@@ -143,8 +143,11 @@ class OSLBook(models.Model):
     def _send_log_books_status(self):
         book_ids = self.search([])
         _logger.info('Inventory state - available')
-        _logger.info([o.name for o in book_ids.filtered(lambda x: x.inventory_state == 'available')])
+        available_books = book_ids.filtered(lambda x: x.inventory_state == 'available')
+        _logger.info([o.name for o in available_books])
         _logger.info('Inventory state - pending')
-        _logger.info([o.name for o in book_ids.filtered(lambda x: x.inventory_state == 'pending')])
+        pending_books = book_ids.filtered(lambda x: x.inventory_state == 'pending')
+        _logger.info([o.name for o in pending_books])
         _logger.info('Inventory state - out_of_stock')
-        _logger.info([o.name for o in book_ids.filtered(lambda x: x.inventory_state == 'out_of_stock')])
+        out_of_stock_books = book_ids.filtered(lambda x: x.inventory_state == 'out_of_stock')
+        _logger.info([o.name for o in out_of_stock_books])
