@@ -1,0 +1,1 @@
+from . import odoo_school_hr_hospital_doctor_report

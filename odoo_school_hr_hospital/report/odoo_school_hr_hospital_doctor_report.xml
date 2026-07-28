@@ -1,0 +1,164 @@
+<odoo>
+    <record id="os_hr_hospital_doctor_report_paperformat" model="report.paperformat">
+        <field name="name">Doctor Report A4</field>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">55</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">10</field>
+        <field name="margin_right">10</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">45</field>
+        <field name="dpi">96</field>
+    </record>
+
+    <record id="os_hr_hospital_doctor_report_action" model="ir.actions.report">
+        <field name="name">Doctor Report</field>
+        <field name="model">os.hr.hospital.doctor</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">odoo_school_hr_hospital.os_hr_hospital_doctor_report</field>
+        <field name="report_file">odoo_school_hr_hospital.os_hr_hospital_doctor_report</field>
+        <field name="print_report_name">'Doctor Report - %s' % (object.name or 'Doctor')</field>
+        <field name="paperformat_id" ref="os_hr_hospital_doctor_report_paperformat"/>
+        <field name="binding_model_id" ref="model_os_hr_hospital_doctor"/>
+        <field name="binding_type">report</field>
+        <field name="binding_view_types">list,form</field>
+    </record>
+
+    <template id="os_hr_hospital_doctor_report_layout">
+        <div class="header">
+            <div class="row align-items-center border-bottom pb-2">
+                <div class="col-4">
+                    <img t-if="company.logo"
+                         t-att-src="image_data_uri(company.logo)"
+                         t-att-alt="company.name"
+                         style="max-height: 70px; max-width: 100%;"/>
+                </div>
+                <div class="col-8 text-end">
+                    <h2 class="mb-1" t-out="company.name"/>
+                    <div class="d-inline-block text-start">
+                        <div t-field="company.partner_id"
+                             t-options='{"widget": "contact", "fields": ["address", "phone", "email", "website"], "no_marker": True}'/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="article"
+             t-att-data-oe-model="doctor._name"
+             t-att-data-oe-id="doctor.id"
+             t-att-data-oe-lang="doctor.env.context.get('lang')">
+            <t t-out="0"/>
+        </div>
+
+        <div class="footer border-top pt-2">
+            <div class="row">
+                <div class="col-6">
+                    <strong>Printed at:</strong>
+                    <span t-out="context_timestamp(print_datetime).strftime('%Y-%m-%d %H:%M')"/>
+                </div>
+                <div class="col-6 text-end">
+                    <strong>City:</strong>
+                    <span t-out="company.city or '-'"/>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="os_hr_hospital_doctor_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doctor">
+                <t t-call="odoo_school_hr_hospital.os_hr_hospital_doctor_report_layout">
+                    <div class="page">
+                        <style>
+                            .os_hr_hospital_visit_scheduled > td {
+                                background-color: #fff3cd !important;
+                                -webkit-print-color-adjust: exact;
+                            }
+                            .os_hr_hospital_visit_completed > td {
+                                background-color: #d1e7dd !important;
+                                -webkit-print-color-adjust: exact;
+                            }
+                            .os_hr_hospital_visit_cancelled > td {
+                                background-color: #f8d7da !important;
+                                -webkit-print-color-adjust: exact;
+                            }
+                        </style>
+
+                        <div class="text-center mb-4">
+                            <h1>Doctor Report</h1>
+                            <h2>
+                                <span t-out="doctor.name or 'Doctor'"/>
+                                - <span t-out="doctor.specialty or 'Specialty not specified'"/>
+                            </h2>
+                        </div>
+
+                        <h3>Visit History</h3>
+                        <table class="table table-sm table-bordered align-middle">
+                            <thead>
+                                <tr>
+                                    <th>Scheduled Date and Time</th>
+                                    <th>Actual Date and Time</th>
+                                    <th>Patient</th>
+                                    <th>Disease</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="doctor_visits" t-value="visits_by_doctor.get(doctor.id, [])"/>
+                                <tr t-foreach="doctor_visits"
+                                    t-as="visit"
+                                    t-attf-class="os_hr_hospital_visit_{{ visit.state }}">
+                                    <td><span t-field="visit.scheduled_datetime"/></td>
+                                    <td>
+                                        <span t-if="visit.actual_datetime" t-field="visit.actual_datetime"/>
+                                        <span t-else="">-</span>
+                                    </td>
+                                    <td><span t-field="visit.patient_id"/></td>
+                                    <td>
+                                        <span t-if="visit.disease_id" t-field="visit.disease_id"/>
+                                        <span t-else="">-</span>
+                                    </td>
+                                    <td><span t-field="visit.state"/></td>
+                                </tr>
+                                <tr t-if="not doctor_visits">
+                                    <td colspan="5" class="text-center">No visits found.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h3 class="mt-4">Personal Patients</h3>
+                        <table class="table table-sm table-bordered align-middle">
+                            <thead>
+                                <tr>
+                                    <th>Patient</th>
+                                    <th>Gender</th>
+                                    <th>Birth Date</th>
+                                    <th>Phone</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="doctor_patients" t-value="patients_by_doctor.get(doctor.id, [])"/>
+                                <tr t-foreach="doctor_patients" t-as="patient">
+                                    <td><span t-out="patient.name or '-'"/></td>
+                                    <td>
+                                        <span t-if="patient.gender" t-field="patient.gender"/>
+                                        <span t-else="">-</span>
+                                    </td>
+                                    <td>
+                                        <span t-if="patient.birth_date" t-field="patient.birth_date"/>
+                                        <span t-else="">-</span>
+                                    </td>
+                                    <td><span t-out="patient.phone or '-'"/></td>
+                                </tr>
+                                <tr t-if="not doctor_patients">
+                                    <td colspan="4" class="text-center">No personal patients found.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
