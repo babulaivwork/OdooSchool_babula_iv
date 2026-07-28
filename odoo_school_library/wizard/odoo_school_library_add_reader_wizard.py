@@ -25,7 +25,7 @@ class OSLAddReader(models.TransientModel):
         if self.env.context.get('active_id'):
             book_id = self.env['odoo.school.library.book'].browse(self.env.context.get('active_id'))
             res['ods_book_id'] = book_id.id
-            res['res_partner_ids'] = [(6, 0, book_id.res_partner_readers_ids.ids)]
+            res['res_partner_ids'] = book_id.res_partner_readers_ids.ids
         return res
 
     def add_reader(self):

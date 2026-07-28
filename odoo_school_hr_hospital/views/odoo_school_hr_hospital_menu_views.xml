@@ -1,6 +1,6 @@
 <odoo>
 
-    <menuitem id="odoo_school_hr_hospital_main_menu"
+    <menuitem id="os_hr_hospital_main_menu"
               web_icon="odoo_school_hr_hospital,static/description/icon.png"
               name="HR Hospital" sequence="300"/>
 

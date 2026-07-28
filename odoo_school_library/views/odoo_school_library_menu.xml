@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
   <menuitem id="odoo_school_library_main_menu"
@@ -11,4 +12,5 @@
   <menuitem id="odoo_school_library_menu_main_settings"
             parent="odoo_school_library_main_menu"
             name="Settings" sequence="900"/>
+
 </odoo>

@@ -25,4 +25,54 @@
         <field name="email">iryna.shevchenko@example.com</field>
         <field name="notes">Консультує пацієнтів з алергічними реакціями.</field>
     </record>
+
+    <record id="doctor_demo_4" model="os.hr.hospital.doctor">
+        <field name="name">Daniel Brooks</field>
+        <field name="category_id" ref="doctor_category_specialist"/>
+        <field name="specialty">Cardiologist</field>
+        <field name="phone">+380504447701</field>
+        <field name="email">daniel.brooks@example.com</field>
+        <field name="gender">male</field>
+        <field name="birth_date">1981-04-17</field>
+        <field name="blood_group">a_positive</field>
+        <field name="notes">Specialist in preventive cardiology and long-term patient care.</field>
+    </record>
+
+    <record id="doctor_demo_5" model="os.hr.hospital.doctor">
+        <field name="name">Sophia Bennett</field>
+        <field name="category_id" ref="doctor_category_highest"/>
+        <field name="specialty">Neurologist</field>
+        <field name="phone">+380674447702</field>
+        <field name="email">sophia.bennett@example.com</field>
+        <field name="gender">female</field>
+        <field name="birth_date">1976-09-08</field>
+        <field name="blood_group">o_negative</field>
+        <field name="notes">Senior neurologist with extensive mentoring and clinical research experience.</field>
+    </record>
+
+    <record id="doctor_demo_6" model="os.hr.hospital.doctor">
+        <field name="name">Ethan Carter</field>
+        <field name="category_id" ref="doctor_category_intern"/>
+        <field name="mentor_id" ref="doctor_demo_4"/>
+        <field name="specialty">Internal Medicine</field>
+        <field name="phone">+380934447703</field>
+        <field name="email">ethan.carter@example.com</field>
+        <field name="gender">male</field>
+        <field name="birth_date">1998-02-26</field>
+        <field name="blood_group">b_positive</field>
+        <field name="notes">Intern focused on cardiovascular diagnostics under Daniel Brooks.</field>
+    </record>
+
+    <record id="doctor_demo_7" model="os.hr.hospital.doctor">
+        <field name="name">Mia Foster</field>
+        <field name="category_id" ref="doctor_category_intern"/>
+        <field name="mentor_id" ref="doctor_demo_5"/>
+        <field name="specialty">Neurology</field>
+        <field name="phone">+380634447704</field>
+        <field name="email">mia.foster@example.com</field>
+        <field name="gender">female</field>
+        <field name="birth_date">1999-11-13</field>
+        <field name="blood_group">ab_positive</field>
+        <field name="notes">Intern developing expertise in neurological assessment under Sophia Bennett.</field>
+    </record>
 </odoo>

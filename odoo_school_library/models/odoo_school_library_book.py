@@ -1,6 +1,6 @@
 import logging
 
-from odoo import fields, models
+from odoo import api, fields, models
 
 _logger = logging.getLogger(__name__)
 
@@ -9,14 +9,15 @@ CONST_EXP = 'Odoo school constant example'
 
 class OSLBook(models.Model):
     _name = 'odoo.school.library.book'
+    _inherit = ['mail.thread']
     _description = 'Book'
 
     name = fields.Char(
         size=64,
+        required=True,
         translate=True,
         copy=False,
     )
-
     active = fields.Boolean(
         default=True,
         groups='base.group_system',
@@ -33,7 +34,6 @@ class OSLBook(models.Model):
     author_names = fields.Char(
         default=lambda self: self._default_all_authors_get(),
     )
-
     company_id = fields.Many2one(
         comodel_name='res.company',
         required=True,
@@ -68,6 +68,7 @@ class OSLBook(models.Model):
         comodel_name='res.partner',
         string='Additional Authors',
         help='Additional Authors who took part in creating this book',
+        readonly=False,
         relation='osl_book_res_partner_rel',
         column1='ods_book_id',
         column2='res_partner_id',
@@ -85,6 +86,16 @@ class OSLBook(models.Model):
         max_width=512,
         max_height=512,
     )
+    res_partner_count = fields.Integer(
+        compute='_compute_count',
+    )
+    start_booking_date = fields.Date(
+        default=fields.Date.today(),
+        required=True,
+    )
+    end_booking_date = fields.Date(
+        default=fields.Date.today(),
+    )
 
     _sql_constraints = [('name_uniq', 'unique (name)', 'The book name must be unique!')]
 
@@ -94,3 +105,46 @@ class OSLBook(models.Model):
         for partner_id in res_partner_ids:
             author_names += partner_id.name
         return author_names
+
+    @api.depends('res_partner_ids')
+    def _compute_count(self):
+        for obj in self:
+            obj.res_partner_count = len(obj.res_partner_ids.ids) + len(obj.res_partner_id.ids)
+
+    def show_to_author(self):
+        self.ensure_one()
+        self.res_partner_id
+
+        _logger.info(self.ids)
+        _logger.info(self.res_partner_ids.ids)
+        _logger.info('Book price = %s', self._context.get('book_price'))
+        pass
+
+    def make_book_available(self):
+        self.ensure_one()
+        self.inventory_state = 'available'
+        _logger.info("State was changed to 'available'")
+
+    def make_book_pending(self):
+        self.ensure_one()
+        self.inventory_state = 'pending'
+        _logger.info("State was changed to 'pending'")
+
+    def make_book_out_of_stock(self):
+        self.ensure_one()
+        self.inventory_state = 'out_of_stock'
+        _logger.info("State was changed to 'out_of_stock'")
+
+    def _get_report_base_filename(self):
+        self.ensure_one()
+        return 'OSL book - %s' % (self.name)
+
+    @api.model
+    def _send_log_books_status(self):
+        book_ids = self.search([])
+        _logger.info('Inventory state - available')
+        _logger.info([o.name for o in book_ids.filtered(lambda x: x.inventory_state == 'available')])
+        _logger.info('Inventory state - pending')
+        _logger.info([o.name for o in book_ids.filtered(lambda x: x.inventory_state == 'pending')])
+        _logger.info('Inventory state - out_of_stock')
+        _logger.info([o.name for o in book_ids.filtered(lambda x: x.inventory_state == 'out_of_stock')])

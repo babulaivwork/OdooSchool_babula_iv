@@ -23,10 +23,3 @@ class ResPartner(models.Model):
     def _compute_ods_books_count(self):
         for partner in self:
             partner.ods_books_count = len(partner.ods_book_ids)
-
-    @api.depends('name', 'ods_book_ids')
-    def _compute_display_name(self):
-        for obj in self:
-            book_names = ','.join([f"'{book.name}'" for book in obj.ods_book_ids])
-            display_name = (obj.name or '') + ' ' + (book_names or '')
-            obj.display_name = display_name
