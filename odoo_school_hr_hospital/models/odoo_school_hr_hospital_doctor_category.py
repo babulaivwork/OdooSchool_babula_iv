@@ -6,7 +6,7 @@ class OSHrHospitalDoctorCategory(models.Model):
     _description = 'Doctor Qualification'
     _order = 'sequence, id'
 
-    name = fields.Char()
+    name = fields.Char(translate=True)
     sequence = fields.Integer()
     doctor_ids = fields.One2many(
         comodel_name='os.hr.hospital.doctor',

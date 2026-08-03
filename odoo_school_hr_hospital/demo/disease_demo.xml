@@ -25,10 +25,24 @@
         <field name="parent_id" ref="disease_respiratory"/>
     </record>
 
+    <record id="disease_pneumonia" model="os.hr.hospital.disease">
+        <field name="name">Pneumonia</field>
+        <field name="code">PNE</field>
+        <field name="description">An infection that causes inflammation in the air sacs of one or both lungs.</field>
+        <field name="parent_id" ref="disease_respiratory"/>
+    </record>
+
     <record id="disease_allergy" model="os.hr.hospital.disease">
         <field name="name">Allergy</field>
         <field name="code">ALG</field>
         <field name="description">An increased sensitivity of the body to allergens.</field>
+        <field name="parent_id" ref="disease_allergic"/>
+    </record>
+
+    <record id="disease_allergic_rhinitis" model="os.hr.hospital.disease">
+        <field name="name">Allergic Rhinitis</field>
+        <field name="code">ARH</field>
+        <field name="description">An allergic inflammation of the nasal passages caused by exposure to allergens.</field>
         <field name="parent_id" ref="disease_allergic"/>
     </record>
 </odoo>

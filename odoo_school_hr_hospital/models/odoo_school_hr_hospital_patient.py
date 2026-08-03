@@ -69,7 +69,7 @@ class OSHrHospitalPatient(models.Model):
         self.ensure_one()
         visit_form = self.env.ref('odoo_school_hr_hospital.os_hr_hospital_visit_form')
         return {
-            'name': 'Create Visit',
+            'name': self.env._('Create Visit'),
             'type': 'ir.actions.act_window',
             'res_model': 'os.hr.hospital.visit',
             'view_mode': 'form',

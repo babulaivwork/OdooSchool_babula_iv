@@ -12,9 +12,9 @@ class OSHrHospitalDisease(models.Model):
         compute='_compute_display_name',
         recursive=True,
     )
-    name = fields.Char()
+    name = fields.Char(translate=True)
     active = fields.Boolean(default=True)
-    description = fields.Text()
+    description = fields.Text(translate=True)
     code = fields.Char()
     parent_id = fields.Many2one(
         comodel_name='os.hr.hospital.disease',
@@ -44,4 +44,6 @@ class OSHrHospitalDisease(models.Model):
     @api.constrains('parent_id')
     def _check_parent_id(self):
         if self._has_cycle():
-            raise ValidationError('A disease hierarchy cannot contain cycles.')
+            raise ValidationError(
+                self.env._('A disease hierarchy cannot contain cycles.')
+            )

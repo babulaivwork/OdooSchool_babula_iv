@@ -42,7 +42,11 @@ class OSHrHospitalDoctorHistory(models.Model):
                 if category_name:
                     display_name += f' ({category_name})'
             else:
-                display_name = patient_name or doctor_name or 'New Doctor History'
+                display_name = (
+                    patient_name
+                    or doctor_name
+                    or self.env._('New Doctor History')
+                )
                 if category_name:
                     display_name += f' ({category_name})'
             if assignment_date:
@@ -55,8 +59,10 @@ class OSHrHospitalDoctorHistory(models.Model):
         if self.assignment_date and self.change_date and self.change_date < self.assignment_date:
             return {
                 'warning': {
-                    'title': 'Invalid Dates',
-                    'message': 'The doctor change date cannot be earlier than the assignment date.',
+                    'title': self.env._('Invalid Dates'),
+                    'message': self.env._(
+                        'The doctor change date cannot be earlier than the assignment date.'
+                    ),
                 },
             }
         return None
@@ -65,4 +71,8 @@ class OSHrHospitalDoctorHistory(models.Model):
     def _check_dates(self):
         for history in self:
             if history.assignment_date and history.change_date and history.change_date < history.assignment_date:
-                raise ValidationError('The doctor change date cannot be earlier than the assignment date.')
+                raise ValidationError(
+                    self.env._(
+                        'The doctor change date cannot be earlier than the assignment date.'
+                    )
+                )

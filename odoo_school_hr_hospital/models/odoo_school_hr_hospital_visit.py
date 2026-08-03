@@ -6,7 +6,10 @@ class OSHrHospitalVisit(models.Model):
     _name = 'os.hr.hospital.visit'
     _description = 'Patient Visit'
 
-    name = fields.Char(required=True, default='New Visit')
+    name = fields.Char(
+        required=True,
+        default=lambda self: self.env._('New Visit'),
+    )
     active = fields.Boolean(default=True)
     state = fields.Selection(
         selection=[
@@ -79,7 +82,9 @@ class OSHrHospitalVisit(models.Model):
             )
         )
         if archived_completed_visits:
-            raise UserError('Completed visits cannot be archived.')
+            raise UserError(
+                self.env._('Completed visits cannot be archived.')
+            )
 
         protected_fields = {
             'doctor_id',
@@ -87,7 +92,11 @@ class OSHrHospitalVisit(models.Model):
             'actual_datetime',
         }
         if completed_visits and protected_fields.intersection(vals):
-            raise UserError('The doctor and dates of a completed visit cannot be changed.')
+            raise UserError(
+                self.env._(
+                    'The doctor and dates of a completed visit cannot be changed.'
+                )
+            )
 
         return super().write(vals)
 
@@ -95,7 +104,9 @@ class OSHrHospitalVisit(models.Model):
     def _check_completed_visit_is_active(self):
         for visit in self:
             if visit.state == 'completed' and not visit.active:
-                raise ValidationError('Completed visits cannot be archived.')
+                raise ValidationError(
+                    self.env._('Completed visits cannot be archived.')
+                )
 
     @api.ondelete(at_uninstall=False)
     def _unlink_if_completed(self):
@@ -105,4 +116,6 @@ class OSHrHospitalVisit(models.Model):
         if not is_hospital_administrator and any(
             visit.state == 'completed' for visit in self
         ):
-            raise UserError('Completed visits cannot be deleted.')
+            raise UserError(
+                self.env._('Completed visits cannot be deleted.')
+            )

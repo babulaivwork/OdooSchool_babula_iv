@@ -60,10 +60,14 @@ class OSHrHospitalDoctor(models.Model):
         )
         for doctor in self:
             if doctor.mentor_id and doctor.category_id != intern_category:
-                raise ValidationError('Only an intern doctor can have a mentor.')
+                raise ValidationError(
+                    self.env._('Only an intern doctor can have a mentor.')
+                )
 
             if doctor.mentor_id.is_intern:
-                raise ValidationError('An intern doctor cannot be selected as a mentor.')
+                raise ValidationError(
+                    self.env._('An intern doctor cannot be selected as a mentor.')
+                )
 
             if doctor.category_id != intern_category:
                 continue
@@ -74,14 +78,16 @@ class OSHrHospitalDoctor(models.Model):
             )
             if mentored_doctor:
                 raise ValidationError(
-                    'A doctor assigned as a mentor cannot be changed to an intern.',
+                    self.env._(
+                        'A doctor assigned as a mentor cannot be changed to an intern.'
+                    )
                 )
 
     def action_create_visit(self):
         self.ensure_one()
         visit_form = self.env.ref('odoo_school_hr_hospital.os_hr_hospital_visit_form')
         return {
-            'name': 'Create Visit',
+            'name': self.env._('Create Visit'),
             'type': 'ir.actions.act_window',
             'res_model': 'os.hr.hospital.visit',
             'view_mode': 'form',

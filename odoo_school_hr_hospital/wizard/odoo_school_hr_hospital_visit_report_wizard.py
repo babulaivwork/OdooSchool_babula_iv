@@ -46,7 +46,11 @@ class OSHrHospitalVisitReportWizard(models.TransientModel):
     def _check_period(self):
         for wizard in self:
             if wizard.date_from and wizard.date_to and wizard.date_from > wizard.date_to:
-                raise ValidationError('The start of the period cannot be later than the end of the period.')
+                raise ValidationError(
+                    self.env._(
+                        'The start of the period cannot be later than the end of the period.'
+                    )
+                )
 
     def action_generate_report(self):
         self.ensure_one()

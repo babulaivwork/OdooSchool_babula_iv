@@ -19,14 +19,22 @@ class OSHrHospitalMassReassignDoctorWizard(models.TransientModel):
     def action_reassign_doctor(self):
         self.ensure_one()
         if not self.change_date:
-            raise UserError('Change Date is required to update personal doctor history.')
+            raise UserError(
+                self.env._(
+                    'Change Date is required to update personal doctor history.'
+                )
+            )
 
         if self.env.context.get('active_model') != 'os.hr.hospital.patient':
-            raise UserError('This action can only be used for patients.')
+            raise UserError(
+                self.env._('This action can only be used for patients.')
+            )
 
         patients = self.env['os.hr.hospital.patient'].browse(self.env.context.get('active_ids', [])).exists()
         if not patients:
-            raise UserError('Please select at least one patient.')
+            raise UserError(
+                self.env._('Please select at least one patient.')
+            )
 
         patients_to_reassign = patients.filtered(lambda patient: patient.personal_doctor_id != self.new_doctor_id)
         if not patients_to_reassign:
