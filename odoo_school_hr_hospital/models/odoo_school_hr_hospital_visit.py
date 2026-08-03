@@ -99,5 +99,10 @@ class OSHrHospitalVisit(models.Model):
 
     @api.ondelete(at_uninstall=False)
     def _unlink_if_completed(self):
-        if any(visit.state == 'completed' for visit in self):
+        is_hospital_administrator = self.env.user.has_group(
+            'odoo_school_hr_hospital.os_hr_hospital_group_administrator'
+        )
+        if not is_hospital_administrator and any(
+            visit.state == 'completed' for visit in self
+        ):
             raise UserError('Completed visits cannot be deleted.')

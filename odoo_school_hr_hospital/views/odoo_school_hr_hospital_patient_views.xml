@@ -41,6 +41,7 @@
                             <field name="birth_date"/>
                             <field name="age"/>
                             <field name="blood_group"/>
+                            <field name="user_id"/>
                             <field name="personal_doctor_id"/>
                             <field name="active"/>
                         </group>

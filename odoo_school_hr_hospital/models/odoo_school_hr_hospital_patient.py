@@ -13,6 +13,13 @@ class OSHrHospitalPatient(models.Model):
     email = fields.Char()
     address = fields.Char()
     notes = fields.Text()
+    user_id = fields.Many2one(
+        comodel_name='res.users',
+        string='System User',
+        copy=False,
+        index=True,
+        ondelete='set null',
+    )
     personal_doctor_id = fields.Many2one(
         comodel_name='os.hr.hospital.doctor',
         string='Personal Doctor',
