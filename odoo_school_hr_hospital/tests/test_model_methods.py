@@ -7,7 +7,10 @@ from .common import OSHrHospitalCommon
 
 
 class TestOSHrHospitalModelMethods(OSHrHospitalCommon):
+    """Test hospital computations and business constraints."""
+
     def test_compute_age(self):
+        """Verify age computation with and without a birth date."""
         today = fields.Date.context_today(self.patient)
         self.patient.birth_date = date(today.year - 30, 1, 1)
 
@@ -18,6 +21,7 @@ class TestOSHrHospitalModelMethods(OSHrHospitalCommon):
         self.assertEqual(self.patient.age, 0)
 
     def test_check_parent_id(self):
+        """Verify that cyclic disease hierarchies are rejected."""
         parent_disease = self.env['os.hr.hospital.disease'].create(
             {
                 'name': 'Parent Disease',
@@ -36,6 +40,7 @@ class TestOSHrHospitalModelMethods(OSHrHospitalCommon):
             parent_disease.parent_id = child_disease
 
     def test_visit_write(self):
+        """Verify editable and protected fields on completed visits."""
         visit = self.env['os.hr.hospital.visit'].create(
             {
                 'name': 'Completed Test Visit',

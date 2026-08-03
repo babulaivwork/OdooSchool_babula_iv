@@ -8,6 +8,8 @@ from odoo.fields import Domain
 
 
 class OSHrHospitalDiseaseReportWizard(models.TransientModel):
+    """Build a disease-grouped visit report from selected filters."""
+
     _name = 'os.hr.hospital.disease.report.wizard'
     _description = 'Disease Report Wizard'
 
@@ -38,6 +40,12 @@ class OSHrHospitalDiseaseReportWizard(models.TransientModel):
 
     @api.model
     def default_get(self, fields_list):
+        """Prefill doctors from the records that opened the wizard.
+
+        :param list[str] fields_list: Fields whose defaults are requested.
+        :return: Default field values for the wizard.
+        :rtype: dict
+        """
         values = super().default_get(fields_list)
         active_model = self.env.context.get('active_model')
         active_ids = self.env.context.get('active_ids') or []
@@ -53,19 +61,32 @@ class OSHrHospitalDiseaseReportWizard(models.TransientModel):
 
     @api.constrains('date_from', 'date_to')
     def _check_period(self):
+        """Ensure that the report period has a valid chronological order.
+
+        :raises ValidationError: If the start date is later than the end date.
+        """
         for wizard in self:
             if wizard.date_from and wizard.date_to and wizard.date_from > wizard.date_to:
-                raise ValidationError(
-                    self.env._(
-                        'The start of the period cannot be later than the end of the period.'
-                    )
-                )
+                raise ValidationError(self.env._('The start of the period cannot be later than the end of the period.'))
 
     def _to_utc_midnight(self, date_value):
+        """Convert local midnight for a date to a naive UTC datetime.
+
+        :param date date_value: Date to convert.
+        :return: Corresponding UTC datetime without timezone information.
+        :rtype: datetime
+        """
         local_midnight = self.env.tz.localize(datetime.combine(date_value, datetime.min.time()))
         return local_midnight.astimezone(UTC).replace(tzinfo=None)
 
     def action_generate_report(self):
+        """Open visits matching the period, doctor, and disease filters.
+
+        The resulting records are grouped by disease.
+
+        :return: Window action displaying the matching visits.
+        :rtype: dict
+        """
         self.ensure_one()
         date_to_exclusive = fields.Date.add(self.date_to, days=1)
         domain = Domain(

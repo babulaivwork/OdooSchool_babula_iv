@@ -3,7 +3,7 @@
     'author': 'Odoo School Student',
     'website': 'https://odoo.school/',
     'category': 'Customizations',
-    'version': '19.0.12.0.0',
+    'version': '19.0.13.0.0',
     'license': 'OPL-1',
 
     'depends': [

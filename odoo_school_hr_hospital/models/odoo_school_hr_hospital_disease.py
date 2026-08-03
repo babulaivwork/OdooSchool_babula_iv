@@ -3,6 +3,8 @@ from odoo.exceptions import ValidationError
 
 
 class OSHrHospitalDisease(models.Model):
+    """Represent a disease in the hierarchical disease classifier."""
+
     _name = 'os.hr.hospital.disease'
     _description = 'Disease'
     _parent_name = 'parent_id'
@@ -37,13 +39,16 @@ class OSHrHospitalDisease(models.Model):
 
     @api.depends('name', 'parent_id.display_name')
     def _compute_display_name(self):
+        """Compute each disease label from its hierarchical path."""
         for disease in self:
             name_parts = [disease.parent_id.display_name, disease.name]
             disease.display_name = ' / '.join(name for name in name_parts if name)
 
     @api.constrains('parent_id')
     def _check_parent_id(self):
+        """Ensure that the disease hierarchy does not contain cycles.
+
+        :raises ValidationError: If a disease is its own ancestor.
+        """
         if self._has_cycle():
-            raise ValidationError(
-                self.env._('A disease hierarchy cannot contain cycles.')
-            )
+            raise ValidationError(self.env._('A disease hierarchy cannot contain cycles.'))
