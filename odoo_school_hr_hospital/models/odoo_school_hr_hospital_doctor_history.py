@@ -3,6 +3,8 @@ from odoo.exceptions import ValidationError
 
 
 class OSHrHospitalDoctorHistory(models.Model):
+    """Track a patient's personal-doctor assignment period."""
+
     _name = 'os.hr.hospital.doctor.history'
     _description = 'Personal Doctor History'
 
@@ -31,6 +33,7 @@ class OSHrHospitalDoctorHistory(models.Model):
         'assignment_date',
     )
     def _compute_display_name(self):
+        """Compute a descriptive label for each doctor assignment."""
         for history in self:
             patient_name = history.patient_id.name or ''
             doctor_name = history.doctor_id.name or ''
@@ -42,7 +45,7 @@ class OSHrHospitalDoctorHistory(models.Model):
                 if category_name:
                     display_name += f' ({category_name})'
             else:
-                display_name = patient_name or doctor_name or 'New Doctor History'
+                display_name = patient_name or doctor_name or self.env._('New Doctor History')
                 if category_name:
                     display_name += f' ({category_name})'
             if assignment_date:
@@ -52,17 +55,28 @@ class OSHrHospitalDoctorHistory(models.Model):
 
     @api.onchange('assignment_date', 'change_date')
     def _onchange_dates(self):
+        """Warn when the change date precedes the assignment date.
+
+        :return: An onchange warning mapping when the dates are invalid,
+            otherwise ``None``.
+        :rtype: dict or None
+        """
         if self.assignment_date and self.change_date and self.change_date < self.assignment_date:
             return {
                 'warning': {
-                    'title': 'Invalid Dates',
-                    'message': 'The doctor change date cannot be earlier than the assignment date.',
+                    'title': self.env._('Invalid Dates'),
+                    'message': self.env._('The doctor change date cannot be earlier than the assignment date.'),
                 },
             }
         return None
 
     @api.constrains('assignment_date', 'change_date')
     def _check_dates(self):
+        """Ensure that the doctor change date is not before assignment.
+
+        :raises ValidationError: If the change date precedes the assignment
+            date.
+        """
         for history in self:
             if history.assignment_date and history.change_date and history.change_date < history.assignment_date:
-                raise ValidationError('The doctor change date cannot be earlier than the assignment date.')
+                raise ValidationError(self.env._('The doctor change date cannot be earlier than the assignment date.'))

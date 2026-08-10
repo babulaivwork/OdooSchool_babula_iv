@@ -97,8 +97,10 @@
                         <div class="text-center mb-4">
                             <h1>Doctor Report</h1>
                             <h2>
-                                <span t-out="doctor.name or 'Doctor'"/>
-                                - <span t-out="doctor.specialty or 'Specialty not specified'"/>
+                                <span t-if="doctor.name" t-out="doctor.name"/>
+                                <span t-else="">Doctor</span>
+                                - <span t-if="doctor.specialty" t-out="doctor.specialty"/>
+                                <span t-else="">Specialty not specified</span>
                             </h2>
                         </div>
 

@@ -1,0 +1,797 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * odoo_school_hr_hospital
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-03 00:00+0000\n"
+"PO-Revision-Date: 2026-08-03 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: Ukrainian\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 "
+"? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > "
+"14) ? 1 : n % 1 == 0 && (n % 10 == 0 || (n % 10 >= 5 && n % 10 <= 9) || (n % "
+"100 >= 11 && n % 100 <= 14)) ? 2 : 3);\n"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.actions.report,print_report_name:odoo_school_hr_hospital.os_hr_hospital_doctor_report_action
+msgid "'Doctor Report - %s' % (object.name or 'Doctor')"
+msgstr "'Звіт про лікаря - %s' % (object.name or 'Лікар')"
+
+#. module: odoo_school_hr_hospital
+#. odoo-python
+#: code:addons/odoo_school_hr_hospital/models/odoo_school_hr_hospital_doctor.py:0
+msgid "A doctor assigned as a mentor cannot be changed to an intern."
+msgstr "Лікаря, призначеного наставником, не можна перевести до інтернів."
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.constraint,message:odoo_school_hr_hospital.constraint_os_hr_hospital_doctor_category_name_unique
+msgid "A doctor qualification with this name already exists."
+msgstr "Кваліфікація лікаря з такою назвою вже існує."
+
+#. module: odoo_school_hr_hospital
+#. odoo-python
+#: code:addons/odoo_school_hr_hospital/models/odoo_school_hr_hospital_disease.py:0
+msgid "A disease hierarchy cannot contain cycles."
+msgstr "Ієрархія хвороб не може містити циклів."
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields.selection,name:odoo_school_hr_hospital.selection__os_hr_hospital_medic_info__blood_group__a_negative
+#: model:ir.model.fields.selection,name:odoo_school_hr_hospital.selection__os_hr_hospital_doctor__blood_group__a_negative
+#: model:ir.model.fields.selection,name:odoo_school_hr_hospital.selection__os_hr_hospital_patient__blood_group__a_negative
+msgid "A(II) Rh-"
+msgstr "A(II) Rh-"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields.selection,name:odoo_school_hr_hospital.selection__os_hr_hospital_medic_info__blood_group__a_positive
+#: model:ir.model.fields.selection,name:odoo_school_hr_hospital.selection__os_hr_hospital_doctor__blood_group__a_positive
+#: model:ir.model.fields.selection,name:odoo_school_hr_hospital.selection__os_hr_hospital_patient__blood_group__a_positive
+msgid "A(II) Rh+"
+msgstr "A(II) Rh+"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields.selection,name:odoo_school_hr_hospital.selection__os_hr_hospital_medic_info__blood_group__ab_negative
+#: model:ir.model.fields.selection,name:odoo_school_hr_hospital.selection__os_hr_hospital_doctor__blood_group__ab_negative
+#: model:ir.model.fields.selection,name:odoo_school_hr_hospital.selection__os_hr_hospital_patient__blood_group__ab_negative
+msgid "AB(IV) Rh-"
+msgstr "AB(IV) Rh-"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields.selection,name:odoo_school_hr_hospital.selection__os_hr_hospital_medic_info__blood_group__ab_positive
+#: model:ir.model.fields.selection,name:odoo_school_hr_hospital.selection__os_hr_hospital_doctor__blood_group__ab_positive
+#: model:ir.model.fields.selection,name:odoo_school_hr_hospital.selection__os_hr_hospital_patient__blood_group__ab_positive
+msgid "AB(IV) Rh+"
+msgstr "AB(IV) Rh+"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_visit__actual_datetime
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_doctor_report
+msgid "Actual Date and Time"
+msgstr "Фактичні дата й час"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_patient__address
+msgid "Address"
+msgstr "Адреса"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_medic_info__age
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_doctor__age
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_patient__age
+msgid "Age"
+msgstr "Вік"
+
+#. module: odoo_school_hr_hospital
+#: model:os.hr.hospital.disease,name:odoo_school_hr_hospital.disease_allergy
+msgid "Allergy"
+msgstr "Алергія"
+
+#. module: odoo_school_hr_hospital
+#: model:os.hr.hospital.disease,name:odoo_school_hr_hospital.disease_allergic
+msgid "Allergic Diseases"
+msgstr "Алергічні захворювання"
+
+#. module: odoo_school_hr_hospital
+#: model:os.hr.hospital.disease,name:odoo_school_hr_hospital.disease_allergic_rhinitis
+msgid "Allergic Rhinitis"
+msgstr "Алергічний риніт"
+
+#. module: odoo_school_hr_hospital
+#: model:os.hr.hospital.disease,description:odoo_school_hr_hospital.disease_flu
+msgid "An acute viral respiratory disease."
+msgstr "Гостре вірусне респіраторне захворювання."
+
+#. module: odoo_school_hr_hospital
+#: model:os.hr.hospital.disease,description:odoo_school_hr_hospital.disease_allergic_rhinitis
+msgid "An allergic inflammation of the nasal passages caused by exposure to allergens."
+msgstr "Алергічне запалення носових ходів, спричинене впливом алергенів."
+
+#. module: odoo_school_hr_hospital
+#: model:os.hr.hospital.disease,description:odoo_school_hr_hospital.disease_allergy
+msgid "An increased sensitivity of the body to allergens."
+msgstr "Підвищена чутливість організму до алергенів."
+
+#. module: odoo_school_hr_hospital
+#: model:os.hr.hospital.disease,description:odoo_school_hr_hospital.disease_pneumonia
+msgid "An infection that causes inflammation in the air sacs of one or both lungs."
+msgstr "Інфекційне захворювання, що спричиняє запалення альвеол однієї або обох легень."
+
+#. module: odoo_school_hr_hospital
+#: model:os.hr.hospital.disease,description:odoo_school_hr_hospital.disease_bronchitis
+msgid "An inflammatory disease of the bronchi."
+msgstr "Запальне захворювання бронхів."
+
+#. module: odoo_school_hr_hospital
+#. odoo-python
+#: code:addons/odoo_school_hr_hospital/models/odoo_school_hr_hospital_doctor.py:0
+msgid "An intern doctor cannot be selected as a mentor."
+msgstr "Лікаря-інтерна не можна вибрати наставником."
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_doctor_history__assignment_date
+msgid "Assignment Date"
+msgstr "Дата призначення"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields.selection,name:odoo_school_hr_hospital.selection__os_hr_hospital_medic_info__blood_group__b_negative
+#: model:ir.model.fields.selection,name:odoo_school_hr_hospital.selection__os_hr_hospital_doctor__blood_group__b_negative
+#: model:ir.model.fields.selection,name:odoo_school_hr_hospital.selection__os_hr_hospital_patient__blood_group__b_negative
+msgid "B(III) Rh-"
+msgstr "B(III) Rh-"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields.selection,name:odoo_school_hr_hospital.selection__os_hr_hospital_medic_info__blood_group__b_positive
+#: model:ir.model.fields.selection,name:odoo_school_hr_hospital.selection__os_hr_hospital_doctor__blood_group__b_positive
+#: model:ir.model.fields.selection,name:odoo_school_hr_hospital.selection__os_hr_hospital_patient__blood_group__b_positive
+msgid "B(III) Rh+"
+msgstr "B(III) Rh+"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_medic_info__birth_date
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_doctor__birth_date
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_patient__birth_date
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_doctor_report
+msgid "Birth Date"
+msgstr "Дата народження"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_medic_info__blood_group
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_doctor__blood_group
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_patient__blood_group
+msgid "Blood Group"
+msgstr "Група крові"
+
+#. module: odoo_school_hr_hospital
+#: model:os.hr.hospital.disease,name:odoo_school_hr_hospital.disease_bronchitis
+msgid "Bronchitis"
+msgstr "Бронхіт"
+
+#. module: odoo_school_hr_hospital
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_disease_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_mass_reassign_doctor_wizard_form
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_visit_report_wizard_form
+msgid "Cancel"
+msgstr "Скасувати"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields.selection,name:odoo_school_hr_hospital.selection__os_hr_hospital_visit__state__cancelled
+msgid "Cancelled"
+msgstr "Скасовано"
+
+#. module: odoo_school_hr_hospital
+#: model:res.groups,comment:odoo_school_hr_hospital.os_hr_hospital_group_doctor
+msgid "Can view and edit the doctor's visits and visits assigned to the doctor's interns."
+msgstr "Може переглядати й редагувати відвідування лікаря та відвідування, призначені його інтернам."
+
+#. module: odoo_school_hr_hospital
+#: model:res.groups,comment:odoo_school_hr_hospital.os_hr_hospital_group_intern
+msgid "Can view and edit visits assigned to the intern."
+msgstr "Може переглядати й редагувати відвідування, призначені інтерну."
+
+#. module: odoo_school_hr_hospital
+#: model:res.groups,comment:odoo_school_hr_hospital.os_hr_hospital_group_manager
+msgid "Can view every visit in the HR Hospital application."
+msgstr "Може переглядати всі відвідування в застосунку «Лікарня HR»."
+
+#. module: odoo_school_hr_hospital
+#: model:res.groups,comment:odoo_school_hr_hospital.os_hr_hospital_group_patient
+msgid "Can view only visits linked to the user's patient record."
+msgstr "Може переглядати лише відвідування, пов’язані із записом пацієнта цього користувача."
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_mass_reassign_doctor_wizard__change_date
+msgid "Change Date"
+msgstr "Дата зміни"
+
+#. module: odoo_school_hr_hospital
+#. odoo-python
+#: code:addons/odoo_school_hr_hospital/wizard/odoo_school_hr_hospital_mass_reassign_doctor_wizard.py:0
+msgid "Change Date is required to update personal doctor history."
+msgstr "Для оновлення історії особистого лікаря потрібно вказати дату зміни."
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_disease__child_ids
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_disease_form
+msgid "Child Diseases"
+msgstr "Дочірні хвороби"
+
+#. module: odoo_school_hr_hospital
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_doctor_report_layout
+msgid "City:"
+msgstr "Місто:"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_disease__code
+msgid "Code"
+msgstr "Код"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields.selection,name:odoo_school_hr_hospital.selection__os_hr_hospital_visit__state__completed
+msgid "Completed"
+msgstr "Завершено"
+
+#. module: odoo_school_hr_hospital
+#. odoo-python
+#: code:addons/odoo_school_hr_hospital/models/odoo_school_hr_hospital_visit.py:0
+msgid "Completed visits cannot be archived."
+msgstr "Завершені відвідування не можна архівувати."
+
+#. module: odoo_school_hr_hospital
+#. odoo-python
+#: code:addons/odoo_school_hr_hospital/models/odoo_school_hr_hospital_visit.py:0
+msgid "Completed visits cannot be deleted."
+msgstr "Завершені відвідування не можна видаляти."
+
+#. module: odoo_school_hr_hospital
+#. odoo-python
+#: code:addons/odoo_school_hr_hospital/models/odoo_school_hr_hospital_doctor.py:0
+#: code:addons/odoo_school_hr_hospital/models/odoo_school_hr_hospital_patient.py:0
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_doctor_kanban
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_patient_form
+msgid "Create Visit"
+msgstr "Створити відвідування"
+
+#. module: odoo_school_hr_hospital
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_visit_search
+msgid "Current Year"
+msgstr "Поточний рік"
+
+#. module: odoo_school_hr_hospital
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_doctor_kanban
+msgid "Delete"
+msgstr "Видалити"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_disease__description
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_patient__description
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_visit__description
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_disease_form
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_patient_form
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_visit_form
+msgid "Description"
+msgstr "Опис"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model,name:odoo_school_hr_hospital.model_os_hr_hospital_disease
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_visit__disease_id
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_visit_report_wizard__disease_id
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_doctor_report
+msgid "Disease"
+msgstr "Хвороба"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.actions.act_window,name:odoo_school_hr_hospital.os_hr_hospital_action_disease_report_wizard_doctor
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_disease_report_wizard_form
+msgid "Disease Report"
+msgstr "Звіт про хвороби"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model,name:odoo_school_hr_hospital.model_os_hr_hospital_disease_report_wizard
+msgid "Disease Report Wizard"
+msgstr "Майстер звіту про хвороби"
+
+#. module: odoo_school_hr_hospital
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_visit_form
+msgid "Disease Visits"
+msgstr "Відвідування за хворобою"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.actions.act_window,name:odoo_school_hr_hospital.os_hr_hospital_action_disease_window
+#: model:ir.ui.menu,name:odoo_school_hr_hospital.os_hr_hospital_menu_disease
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_disease_report_wizard__disease_ids
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_disease_search
+msgid "Diseases"
+msgstr "Хвороби"
+
+#. module: odoo_school_hr_hospital
+#: model:os.hr.hospital.disease,description:odoo_school_hr_hospital.disease_allergic
+msgid "Diseases caused by an immune response to allergens."
+msgstr "Захворювання, спричинені імунною реакцією на алергени."
+
+#. module: odoo_school_hr_hospital
+#: model:os.hr.hospital.disease,description:odoo_school_hr_hospital.disease_respiratory
+msgid "Diseases that affect the respiratory system."
+msgstr "Захворювання, що уражають дихальну систему."
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_disease__display_name
+msgid "Display Name"
+msgstr "Назва для відображення"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model,name:odoo_school_hr_hospital.model_os_hr_hospital_doctor
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_doctor_history__doctor_id
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_visit__doctor_id
+#: model:res.groups,name:odoo_school_hr_hospital.os_hr_hospital_group_doctor
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_doctor_report
+msgid "Doctor"
+msgstr "Лікар"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_doctor_history__change_date
+msgid "Doctor Change Date"
+msgstr "Дата зміни лікаря"
+
+#. module: odoo_school_hr_hospital
+#: model:os.hr.hospital.doctor.category,name:odoo_school_hr_hospital.doctor_category_highest
+msgid "Doctor of the Highest Category"
+msgstr "Лікар вищої категорії"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model,name:odoo_school_hr_hospital.model_os_hr_hospital_doctor_category
+msgid "Doctor Qualification"
+msgstr "Кваліфікація лікаря"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.actions.act_window,name:odoo_school_hr_hospital.os_hr_hospital_action_doctor_category_window
+#: model:ir.ui.menu,name:odoo_school_hr_hospital.os_hr_hospital_menu_doctor_category
+msgid "Doctor Qualifications"
+msgstr "Кваліфікації лікарів"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.actions.report,name:odoo_school_hr_hospital.os_hr_hospital_doctor_report_action
+#: model:ir.model,name:odoo_school_hr_hospital.model_report_odoo_school_hr_hospital_os_hr_hospital_doctor_report
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_doctor_report
+msgid "Doctor Report"
+msgstr "Звіт про лікаря"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.actions.act_window,name:odoo_school_hr_hospital.os_hr_hospital_action_doctor_window
+#: model:ir.ui.menu,name:odoo_school_hr_hospital.os_hr_hospital_menu_doctor
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_doctor_category__doctor_ids
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_disease_report_wizard__doctor_ids
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_visit_report_wizard__doctor_ids
+msgid "Doctors"
+msgstr "Лікарі"
+
+#. module: odoo_school_hr_hospital
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_doctor_kanban
+msgid "Edit"
+msgstr "Редагувати"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_doctor__email
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_patient__email
+msgid "Email"
+msgstr "Електронна пошта"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_disease_report_wizard__date_to
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_visit_report_wizard__date_to
+msgid "End of Period"
+msgstr "Кінець періоду"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields.selection,name:odoo_school_hr_hospital.selection__os_hr_hospital_medic_info__gender__female
+#: model:ir.model.fields.selection,name:odoo_school_hr_hospital.selection__os_hr_hospital_doctor__gender__female
+#: model:ir.model.fields.selection,name:odoo_school_hr_hospital.selection__os_hr_hospital_patient__gender__female
+msgid "Female"
+msgstr "Жінка"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_medic_info__gender
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_doctor__gender
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_patient__gender
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_doctor_report
+msgid "Gender"
+msgstr "Стать"
+
+#. module: odoo_school_hr_hospital
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_disease_report_wizard_form
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_visit_report_wizard_form
+msgid "Generate Report"
+msgstr "Сформувати звіт"
+
+#. module: odoo_school_hr_hospital
+#: model:res.groups,comment:odoo_school_hr_hospital.os_hr_hospital_group_administrator
+msgid "Has full access to every model in the HR Hospital application."
+msgstr "Має повний доступ до всіх моделей застосунку «Лікарня HR»."
+
+#. module: odoo_school_hr_hospital
+#: model:ir.module.category,name:odoo_school_hr_hospital.os_hr_hospital_module_category
+#: model:ir.ui.menu,name:odoo_school_hr_hospital.os_hr_hospital_main_menu
+#: model:res.groups.privilege,name:odoo_school_hr_hospital.os_hr_hospital_privilege
+msgid "HR Hospital"
+msgstr "Лікарня HR"
+
+#. module: odoo_school_hr_hospital
+#: model:os.hr.hospital.disease,name:odoo_school_hr_hospital.disease_flu
+msgid "Influenza"
+msgstr "Грип"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_patient__insurance_policy_number
+msgid "Insurance Policy Number"
+msgstr "Номер страхового поліса"
+
+#. module: odoo_school_hr_hospital
+#: model:res.groups,name:odoo_school_hr_hospital.os_hr_hospital_group_intern
+msgid "Intern"
+msgstr "Інтерн"
+
+#. module: odoo_school_hr_hospital
+#: model:os.hr.hospital.doctor.category,name:odoo_school_hr_hospital.doctor_category_intern
+msgid "Intern Doctor"
+msgstr "Лікар-інтерн"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_doctor__intern_ids
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_doctor_form
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_doctor_search
+msgid "Interns"
+msgstr "Інтерни"
+
+#. module: odoo_school_hr_hospital
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_doctor_kanban
+msgid "Interns:"
+msgstr "Інтерни:"
+
+#. module: odoo_school_hr_hospital
+#. odoo-python
+#: code:addons/odoo_school_hr_hospital/models/odoo_school_hr_hospital_doctor_history.py:0
+msgid "Invalid Dates"
+msgstr "Некоректні дати"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_doctor__is_intern
+msgid "Is Intern"
+msgstr "Є інтерном"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields.selection,name:odoo_school_hr_hospital.selection__os_hr_hospital_medic_info__gender__male
+#: model:ir.model.fields.selection,name:odoo_school_hr_hospital.selection__os_hr_hospital_doctor__gender__male
+#: model:ir.model.fields.selection,name:odoo_school_hr_hospital.selection__os_hr_hospital_patient__gender__male
+msgid "Male"
+msgstr "Чоловік"
+
+#. module: odoo_school_hr_hospital
+#: model:res.groups,name:odoo_school_hr_hospital.os_hr_hospital_group_manager
+msgid "Manager"
+msgstr "Менеджер"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.actions.act_window,name:odoo_school_hr_hospital.os_hr_hospital_action_mass_reassign_doctor_wizard
+#: model:ir.model,name:odoo_school_hr_hospital.model_os_hr_hospital_mass_reassign_doctor_wizard
+msgid "Mass Reassign Personal Doctor"
+msgstr "Масове перепризначення особистого лікаря"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model,name:odoo_school_hr_hospital.model_os_hr_hospital_medic_info
+msgid "Medical Information"
+msgstr "Медична інформація"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_doctor__mentor_id
+msgid "Mentor"
+msgstr "Наставник"
+
+#. module: odoo_school_hr_hospital
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_doctor_kanban
+msgid "Mentor:"
+msgstr "Наставник:"
+
+#. module: odoo_school_hr_hospital
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_doctor_search
+msgid "Mentors"
+msgstr "Наставники"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_disease__name
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_doctor__name
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_doctor_category__name
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_patient__name
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_visit__name
+msgid "Name"
+msgstr "Назва"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_mass_reassign_doctor_wizard__new_doctor_id
+msgid "New Doctor"
+msgstr "Новий лікар"
+
+#. module: odoo_school_hr_hospital
+#. odoo-python
+#: code:addons/odoo_school_hr_hospital/models/odoo_school_hr_hospital_doctor_history.py:0
+msgid "New Doctor History"
+msgstr "Нова історія особистого лікаря"
+
+#. module: odoo_school_hr_hospital
+#. odoo-python
+#: code:addons/odoo_school_hr_hospital/models/odoo_school_hr_hospital_visit.py:0
+msgid "New Visit"
+msgstr "Нове відвідування"
+
+#. module: odoo_school_hr_hospital
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_doctor_report
+msgid "No personal patients found."
+msgstr "Особистих пацієнтів не знайдено."
+
+#. module: odoo_school_hr_hospital
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_doctor_report
+msgid "No visits found."
+msgstr "Відвідувань не знайдено."
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_doctor__notes
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_patient__notes
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_doctor_form
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_patient_form
+msgid "Notes"
+msgstr "Примітки"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields.selection,name:odoo_school_hr_hospital.selection__os_hr_hospital_medic_info__blood_group__o_negative
+#: model:ir.model.fields.selection,name:odoo_school_hr_hospital.selection__os_hr_hospital_doctor__blood_group__o_negative
+#: model:ir.model.fields.selection,name:odoo_school_hr_hospital.selection__os_hr_hospital_patient__blood_group__o_negative
+msgid "O(I) Rh-"
+msgstr "O(I) Rh-"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields.selection,name:odoo_school_hr_hospital.selection__os_hr_hospital_medic_info__blood_group__o_positive
+#: model:ir.model.fields.selection,name:odoo_school_hr_hospital.selection__os_hr_hospital_doctor__blood_group__o_positive
+#: model:ir.model.fields.selection,name:odoo_school_hr_hospital.selection__os_hr_hospital_patient__blood_group__o_positive
+msgid "O(I) Rh+"
+msgstr "O(I) Rh+"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_visit_report_wizard__only_completed
+msgid "Only Completed Visits"
+msgstr "Лише завершені відвідування"
+
+#. module: odoo_school_hr_hospital
+#. odoo-python
+#: code:addons/odoo_school_hr_hospital/models/odoo_school_hr_hospital_doctor.py:0
+msgid "Only an intern doctor can have a mentor."
+msgstr "Лише лікар-інтерн може мати наставника."
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_disease__parent_id
+msgid "Parent Disease"
+msgstr "Батьківська хвороба"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_disease__parent_path
+msgid "Parent Path"
+msgstr "Батьківський шлях"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model,name:odoo_school_hr_hospital.model_os_hr_hospital_patient
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_doctor_history__patient_id
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_visit__patient_id
+#: model:res.groups,name:odoo_school_hr_hospital.os_hr_hospital_group_patient
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_doctor_report
+msgid "Patient"
+msgstr "Пацієнт"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model,name:odoo_school_hr_hospital.model_os_hr_hospital_visit
+msgid "Patient Visit"
+msgstr "Відвідування пацієнта"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.actions.act_window,name:odoo_school_hr_hospital.os_hr_hospital_action_patient_window
+#: model:ir.ui.menu,name:odoo_school_hr_hospital.os_hr_hospital_menu_patient
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_visit_report_wizard__patient_ids
+msgid "Patients"
+msgstr "Пацієнти"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_patient__personal_doctor_id
+msgid "Personal Doctor"
+msgstr "Особистий лікар"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.actions.act_window,name:odoo_school_hr_hospital.os_hr_hospital_action_doctor_history_window
+#: model:ir.model,name:odoo_school_hr_hospital.model_os_hr_hospital_doctor_history
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_patient__doctor_history_ids
+#: model:ir.ui.menu,name:odoo_school_hr_hospital.os_hr_hospital_menu_doctor_history
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_patient_form
+msgid "Personal Doctor History"
+msgstr "Історія особистого лікаря"
+
+#. module: odoo_school_hr_hospital
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_doctor_report
+msgid "Personal Patients"
+msgstr "Особисті пацієнти"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_doctor__phone
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_patient__phone
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_doctor_report
+msgid "Phone"
+msgstr "Телефон"
+
+#. module: odoo_school_hr_hospital
+#. odoo-python
+#: code:addons/odoo_school_hr_hospital/wizard/odoo_school_hr_hospital_mass_reassign_doctor_wizard.py:0
+msgid "Please select at least one patient."
+msgstr "Виберіть принаймні одного пацієнта."
+
+#. module: odoo_school_hr_hospital
+#: model:os.hr.hospital.disease,name:odoo_school_hr_hospital.disease_pneumonia
+msgid "Pneumonia"
+msgstr "Пневмонія"
+
+#. module: odoo_school_hr_hospital
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_doctor_report_layout
+msgid "Printed at:"
+msgstr "Надруковано:"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_doctor__category_id
+msgid "Qualification"
+msgstr "Кваліфікація"
+
+#. module: odoo_school_hr_hospital
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_doctor_kanban
+msgid "Qualification:"
+msgstr "Кваліфікація:"
+
+#. module: odoo_school_hr_hospital
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_mass_reassign_doctor_wizard_form
+msgid "Reassign Doctor"
+msgstr "Перепризначити лікаря"
+
+#. module: odoo_school_hr_hospital
+#: model:os.hr.hospital.disease,name:odoo_school_hr_hospital.disease_respiratory
+msgid "Respiratory Diseases"
+msgstr "Респіраторні захворювання"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields.selection,name:odoo_school_hr_hospital.selection__os_hr_hospital_visit__state__scheduled
+msgid "Scheduled"
+msgstr "Заплановано"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_visit__scheduled_datetime
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_doctor_report
+msgid "Scheduled Date and Time"
+msgstr "Заплановані дата й час"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_doctor_category__sequence
+msgid "Sequence"
+msgstr "Послідовність"
+
+#. module: odoo_school_hr_hospital
+#: model:os.hr.hospital.doctor.category,name:odoo_school_hr_hospital.doctor_category_specialist
+msgid "Specialist Doctor"
+msgstr "Лікар-спеціаліст"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_doctor__specialty
+msgid "Specialty"
+msgstr "Спеціальність"
+
+#. module: odoo_school_hr_hospital
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_doctor_report
+msgid "Specialty not specified"
+msgstr "Спеціальність не вказана"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_disease_report_wizard__date_from
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_visit_report_wizard__date_from
+msgid "Start of Period"
+msgstr "Початок періоду"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_visit__state
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_doctor_report
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_visit_search
+msgid "Status"
+msgstr "Статус"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_visit__summary
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_visit_form
+msgid "Summary"
+msgstr "Висновок"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_doctor__user_id
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_patient__user_id
+msgid "System User"
+msgstr "Системний користувач"
+
+#. module: odoo_school_hr_hospital
+#. odoo-python
+#: code:addons/odoo_school_hr_hospital/models/odoo_school_hr_hospital_doctor_history.py:0
+msgid "The doctor change date cannot be earlier than the assignment date."
+msgstr "Дата зміни лікаря не може передувати даті призначення."
+
+#. module: odoo_school_hr_hospital
+#. odoo-python
+#: code:addons/odoo_school_hr_hospital/models/odoo_school_hr_hospital_visit.py:0
+msgid "The doctor and dates of a completed visit cannot be changed."
+msgstr "Лікаря та дати завершеного відвідування не можна змінювати."
+
+#. module: odoo_school_hr_hospital
+#. odoo-python
+#: code:addons/odoo_school_hr_hospital/wizard/odoo_school_hr_hospital_disease_report_wizard.py:0
+#: code:addons/odoo_school_hr_hospital/wizard/odoo_school_hr_hospital_visit_report_wizard.py:0
+msgid "The start of the period cannot be later than the end of the period."
+msgstr "Дата початку періоду не може бути пізнішою за дату його завершення."
+
+#. module: odoo_school_hr_hospital
+#. odoo-python
+#: code:addons/odoo_school_hr_hospital/wizard/odoo_school_hr_hospital_mass_reassign_doctor_wizard.py:0
+msgid "This action can only be used for patients."
+msgstr "Цю дію можна використовувати лише для пацієнтів."
+
+#. module: odoo_school_hr_hospital
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_doctor_report
+msgid "Visit History"
+msgstr "Історія відвідувань"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.actions.act_window,name:odoo_school_hr_hospital.os_hr_hospital_action_visit_report_wizard_doctor
+#: model:ir.actions.act_window,name:odoo_school_hr_hospital.os_hr_hospital_action_visit_report_wizard_patient
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_visit_report_wizard_form
+msgid "Visit Report"
+msgstr "Звіт про відвідування"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model,name:odoo_school_hr_hospital.model_os_hr_hospital_visit_report_wizard
+msgid "Visit Report Wizard"
+msgstr "Майстер звіту про відвідування"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.actions.act_window,name:odoo_school_hr_hospital.os_hr_hospital_action_visit_window
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_disease__visit_ids
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_doctor__visit_ids
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_patient__visit_count
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_patient__visit_ids
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_visit__disease_visit_count
+#: model:ir.ui.menu,name:odoo_school_hr_hospital.os_hr_hospital_menu_visit
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_disease_form
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_doctor_form
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_patient_form
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_visit_calendar
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_visit_pivot
+msgid "Visits"
+msgstr "Відвідування"
+
+#. module: odoo_school_hr_hospital
+#: model_terms:ir.ui.view,arch_db:odoo_school_hr_hospital.os_hr_hospital_visit_graph
+msgid "Visits by Month and Disease"
+msgstr "Відвідування за місяцем і хворобою"
+
+#. module: odoo_school_hr_hospital
+#: model:res.groups,name:odoo_school_hr_hospital.os_hr_hospital_group_administrator
+msgid "Administrator"
+msgstr "Адміністратор"
+
+#. module: odoo_school_hr_hospital
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_disease__active
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_doctor__active
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_doctor_history__active
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_patient__active
+#: model:ir.model.fields,field_description:odoo_school_hr_hospital.field_os_hr_hospital_visit__active
+msgid "Active"
+msgstr "Активно"

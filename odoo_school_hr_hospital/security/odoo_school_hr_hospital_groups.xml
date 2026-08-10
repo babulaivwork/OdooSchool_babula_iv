@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="os_hr_hospital_module_category" model="ir.module.category">
+        <field name="name">HR Hospital</field>
+        <field name="sequence">30</field>
+    </record>
+
+    <record id="os_hr_hospital_privilege" model="res.groups.privilege">
+        <field name="name">HR Hospital</field>
+        <field name="description">Access levels for the HR Hospital application.</field>
+        <field name="placeholder">No Access</field>
+        <field name="sequence">30</field>
+        <field name="category_id" ref="os_hr_hospital_module_category"/>
+    </record>
+
+    <record id="os_hr_hospital_group_patient" model="res.groups">
+        <field name="name">Patient</field>
+        <field name="sequence">10</field>
+        <field name="comment">Can view only visits linked to the user's patient record.</field>
+        <field name="privilege_id" ref="os_hr_hospital_privilege"/>
+        <field name="implied_ids" eval="[Command.link(ref('base.group_user'))]"/>
+    </record>
+
+    <record id="os_hr_hospital_group_intern" model="res.groups">
+        <field name="name">Intern</field>
+        <field name="sequence">20</field>
+        <field name="comment">Can view and edit visits assigned to the intern.</field>
+        <field name="privilege_id" ref="os_hr_hospital_privilege"/>
+        <field name="implied_ids" eval="[Command.link(ref('os_hr_hospital_group_patient'))]"/>
+    </record>
+
+    <record id="os_hr_hospital_group_doctor" model="res.groups">
+        <field name="name">Doctor</field>
+        <field name="sequence">30</field>
+        <field name="comment">Can view and edit the doctor's visits and visits assigned to the doctor's interns.</field>
+        <field name="privilege_id" ref="os_hr_hospital_privilege"/>
+        <field name="implied_ids" eval="[Command.link(ref('os_hr_hospital_group_intern'))]"/>
+    </record>
+
+    <record id="os_hr_hospital_group_manager" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="sequence">40</field>
+        <field name="comment">Can view every visit in the HR Hospital application.</field>
+        <field name="privilege_id" ref="os_hr_hospital_privilege"/>
+        <field name="implied_ids" eval="[Command.link(ref('os_hr_hospital_group_doctor'))]"/>
+    </record>
+
+    <record id="os_hr_hospital_group_administrator" model="res.groups">
+        <field name="name">Administrator</field>
+        <field name="sequence">50</field>
+        <field name="comment">Has full access to every model in the HR Hospital application.</field>
+        <field name="privilege_id" ref="os_hr_hospital_privilege"/>
+        <field name="implied_ids" eval="[Command.link(ref('os_hr_hospital_group_manager'))]"/>
+        <field name="user_ids" eval="[Command.link(ref('base.user_root')), Command.link(ref('base.user_admin'))]"/>
+    </record>
+</odoo>

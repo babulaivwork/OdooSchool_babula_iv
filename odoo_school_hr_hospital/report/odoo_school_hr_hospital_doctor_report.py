@@ -2,11 +2,20 @@ from odoo import api, fields, models
 
 
 class OSHrHospitalDoctorReport(models.AbstractModel):
+    """Prepare rendering data for the doctor PDF report."""
+
     _name = 'report.odoo_school_hr_hospital.os_hr_hospital_doctor_report'
     _description = 'Doctor Report'
 
     @api.model
     def _get_report_values(self, docids, data=None):
+        """Collect doctors, visits, and personal patients for the report.
+
+        :param list[int] docids: IDs of doctors included in the report.
+        :param dict or None data: Optional report data supplied by Odoo.
+        :return: Rendering context for the QWeb report.
+        :rtype: dict
+        """
         doctors = self.env['os.hr.hospital.doctor'].browse(docids)
         visits = self.env['os.hr.hospital.visit'].search(
             [('doctor_id', 'in', doctors.ids)],

@@ -2,11 +2,13 @@ from odoo import fields, models
 
 
 class OSHrHospitalDoctorCategory(models.Model):
+    """Represent a doctor qualification category."""
+
     _name = 'os.hr.hospital.doctor.category'
     _description = 'Doctor Qualification'
     _order = 'sequence, id'
 
-    name = fields.Char()
+    name = fields.Char(translate=True)
     sequence = fields.Integer()
     doctor_ids = fields.One2many(
         comodel_name='os.hr.hospital.doctor',

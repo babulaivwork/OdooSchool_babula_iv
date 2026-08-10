@@ -2,6 +2,8 @@ from odoo import api, fields, models
 
 
 class OSHrHospitalPatient(models.Model):
+    """Represent hospital patients and their care relationships."""
+
     _name = 'os.hr.hospital.patient'
     _inherit = 'os.hr.hospital.medic.info'
     _description = 'Patient'
@@ -13,6 +15,13 @@ class OSHrHospitalPatient(models.Model):
     email = fields.Char()
     address = fields.Char()
     notes = fields.Text()
+    user_id = fields.Many2one(
+        comodel_name='res.users',
+        string='System User',
+        copy=False,
+        index=True,
+        ondelete='set null',
+    )
     personal_doctor_id = fields.Many2one(
         comodel_name='os.hr.hospital.doctor',
         string='Personal Doctor',
@@ -39,6 +48,7 @@ class OSHrHospitalPatient(models.Model):
 
     @api.depends('visit_ids', 'visit_ids.active')
     def _compute_visit_count(self):
+        """Compute the number of active visits for each patient."""
         visit_count_by_patient = dict(
             self.env['os.hr.hospital.visit']._read_group(
                 domain=[('patient_id', 'in', self.ids)],
@@ -50,6 +60,11 @@ class OSHrHospitalPatient(models.Model):
             patient.visit_count = visit_count_by_patient.get(patient, 0)
 
     def action_open_visits(self):
+        """Return an action showing visits of the current patient.
+
+        :return: Window action filtered by the current patient.
+        :rtype: dict
+        """
         self.ensure_one()
         action = self.env['ir.actions.act_window']._for_xml_id(
             'odoo_school_hr_hospital.os_hr_hospital_action_visit_window'
@@ -59,10 +74,18 @@ class OSHrHospitalPatient(models.Model):
         return action
 
     def action_create_visit(self):
+        """Return a modal action for creating a visit for this patient.
+
+        The patient's personal doctor is supplied as the default doctor when
+        one is assigned.
+
+        :return: Window action containing patient and doctor defaults.
+        :rtype: dict
+        """
         self.ensure_one()
         visit_form = self.env.ref('odoo_school_hr_hospital.os_hr_hospital_visit_form')
         return {
-            'name': 'Create Visit',
+            'name': self.env._('Create Visit'),
             'type': 'ir.actions.act_window',
             'res_model': 'os.hr.hospital.visit',
             'view_mode': 'form',

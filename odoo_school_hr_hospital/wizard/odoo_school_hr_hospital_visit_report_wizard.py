@@ -4,6 +4,8 @@ from odoo.fields import Domain
 
 
 class OSHrHospitalVisitReportWizard(models.TransientModel):
+    """Build a filtered list of hospital visits."""
+
     _name = 'os.hr.hospital.visit.report.wizard'
     _description = 'Visit Report Wizard'
 
@@ -25,6 +27,12 @@ class OSHrHospitalVisitReportWizard(models.TransientModel):
 
     @api.model
     def default_get(self, fields_list):
+        """Prefill doctors or patients from the records opening the wizard.
+
+        :param list[str] fields_list: Fields whose defaults are requested.
+        :return: Default field values for the wizard.
+        :rtype: dict
+        """
         values = super().default_get(fields_list)
         active_model = self.env.context.get('active_model')
         active_ids = self.env.context.get('active_ids') or []
@@ -44,11 +52,20 @@ class OSHrHospitalVisitReportWizard(models.TransientModel):
 
     @api.constrains('date_from', 'date_to')
     def _check_period(self):
+        """Ensure that the report period has a valid chronological order.
+
+        :raises ValidationError: If the start date is later than the end date.
+        """
         for wizard in self:
             if wizard.date_from and wizard.date_to and wizard.date_from > wizard.date_to:
-                raise ValidationError('The start of the period cannot be later than the end of the period.')
+                raise ValidationError(self.env._('The start of the period cannot be later than the end of the period.'))
 
     def action_generate_report(self):
+        """Open visits matching the selected report filters.
+
+        :return: Window action displaying the matching visits.
+        :rtype: dict
+        """
         self.ensure_one()
         domain = Domain.TRUE
 

@@ -3,6 +3,8 @@ from odoo.exceptions import ValidationError
 
 
 class OSHrHospitalDoctor(models.Model):
+    """Represent hospital doctors, interns, and mentor relationships."""
+
     _name = 'os.hr.hospital.doctor'
     _inherit = 'os.hr.hospital.medic.info'
     _description = 'Doctor'
@@ -45,6 +47,7 @@ class OSHrHospitalDoctor(models.Model):
 
     @api.depends('category_id')
     def _compute_is_intern(self):
+        """Compute whether each doctor belongs to the intern category."""
         intern_category = self.env.ref(
             'odoo_school_hr_hospital.doctor_category_intern',
             raise_if_not_found=False,
@@ -54,16 +57,22 @@ class OSHrHospitalDoctor(models.Model):
 
     @api.constrains('mentor_id', 'category_id')
     def _check_mentor_assignment(self):
+        """Validate mentor assignments and intern-category changes.
+
+        :raises ValidationError: If a non-intern has a mentor, an intern is
+            selected as a mentor, or an existing mentor is changed to an
+            intern.
+        """
         intern_category = self.env.ref(
             'odoo_school_hr_hospital.doctor_category_intern',
             raise_if_not_found=False,
         )
         for doctor in self:
             if doctor.mentor_id and doctor.category_id != intern_category:
-                raise ValidationError('Only an intern doctor can have a mentor.')
+                raise ValidationError(self.env._('Only an intern doctor can have a mentor.'))
 
             if doctor.mentor_id.is_intern:
-                raise ValidationError('An intern doctor cannot be selected as a mentor.')
+                raise ValidationError(self.env._('An intern doctor cannot be selected as a mentor.'))
 
             if doctor.category_id != intern_category:
                 continue
@@ -73,15 +82,18 @@ class OSHrHospitalDoctor(models.Model):
                 limit=1,
             )
             if mentored_doctor:
-                raise ValidationError(
-                    'A doctor assigned as a mentor cannot be changed to an intern.',
-                )
+                raise ValidationError(self.env._('A doctor assigned as a mentor cannot be changed to an intern.'))
 
     def action_create_visit(self):
+        """Return a modal action for creating a visit for this doctor.
+
+        :return: Window action containing the current doctor as a default.
+        :rtype: dict
+        """
         self.ensure_one()
         visit_form = self.env.ref('odoo_school_hr_hospital.os_hr_hospital_visit_form')
         return {
-            'name': 'Create Visit',
+            'name': self.env._('Create Visit'),
             'type': 'ir.actions.act_window',
             'res_model': 'os.hr.hospital.visit',
             'view_mode': 'form',

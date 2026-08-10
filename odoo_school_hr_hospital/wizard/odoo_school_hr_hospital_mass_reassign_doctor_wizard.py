@@ -3,6 +3,8 @@ from odoo.exceptions import UserError
 
 
 class OSHrHospitalMassReassignDoctorWizard(models.TransientModel):
+    """Reassign a personal doctor for multiple selected patients."""
+
     _name = 'os.hr.hospital.mass.reassign.doctor.wizard'
     _description = 'Mass Reassign Personal Doctor'
 
@@ -17,16 +19,26 @@ class OSHrHospitalMassReassignDoctorWizard(models.TransientModel):
     )
 
     def action_reassign_doctor(self):
+        """Reassign selected patients and update their doctor histories.
+
+        Existing open history records receive the selected change date, and a
+        new history record is created for every reassigned patient.
+
+        :return: Action that closes the wizard.
+        :rtype: dict
+        :raises UserError: If the change date is missing, the wizard was not
+            opened for patients, or no valid patients were selected.
+        """
         self.ensure_one()
         if not self.change_date:
-            raise UserError('Change Date is required to update personal doctor history.')
+            raise UserError(self.env._('Change Date is required to update personal doctor history.'))
 
         if self.env.context.get('active_model') != 'os.hr.hospital.patient':
-            raise UserError('This action can only be used for patients.')
+            raise UserError(self.env._('This action can only be used for patients.'))
 
         patients = self.env['os.hr.hospital.patient'].browse(self.env.context.get('active_ids', [])).exists()
         if not patients:
-            raise UserError('Please select at least one patient.')
+            raise UserError(self.env._('Please select at least one patient.'))
 
         patients_to_reassign = patients.filtered(lambda patient: patient.personal_doctor_id != self.new_doctor_id)
         if not patients_to_reassign:
