@@ -118,17 +118,41 @@
                 <field name="phone"/>
                 <field name="email"/>
                 <field name="mentor_id"/>
+                <field name="intern_ids"/>
                 <field name="is_intern"/>
                 <templates>
+                    <t t-name="menu">
+                        <t t-if="widget.editable">
+                            <a role="menuitem"
+                               type="open"
+                               class="dropdown-item">Edit</a>
+                        </t>
+                        <t t-if="widget.deletable">
+                            <a role="menuitem"
+                               type="delete"
+                               class="dropdown-item">Delete</a>
+                        </t>
+                    </t>
                     <t t-name="card">
                         <div class="d-flex flex-column gap-1">
                             <field name="name" class="fw-bold fs-5"/>
+                            <div>
+                                <span class="fw-bold">Qualification: </span>
+                                <field name="category_id"/>
+                            </div>
                             <field name="specialty"/>
                             <field name="phone"/>
                             <field name="email"/>
                             <div t-if="record.mentor_id.raw_value">
                                 <span class="fw-bold">Mentor: </span>
                                 <field name="mentor_id"/>
+                            </div>
+                            <div t-if="record.intern_ids.raw_value.length">
+                                <span class="fw-bold">Interns: </span>
+                                <field name="intern_ids"
+                                       widget="many2many_tags"
+                                       readonly="1"
+                                       options="{'no_create': True, 'no_open': True}"/>
                             </div>
                             <footer class="mt-2">
                                 <button name="action_create_visit"

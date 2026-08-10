@@ -3,11 +3,12 @@
     'author': 'Odoo School Student',
     'website': 'https://odoo.school/',
     'category': 'Customizations',
-    'version': '19.0.7.0.0',
+    'version': '19.0.10.0.0',
     'license': 'OPL-1',
 
     'depends': [
-        'base'
+        'base',
+        'web',
     ],
 
     'external_dependencies': {
@@ -27,6 +28,7 @@
         'views/odoo_school_hr_hospital_visit_views.xml',
         'views/odoo_school_hr_hospital_doctor_category_views.xml',
         'views/odoo_school_hr_hospital_doctor_history_views.xml',
+        'report/odoo_school_hr_hospital_doctor_report.xml',
     ],
 
     'demo': [
